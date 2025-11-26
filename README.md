@@ -1,8 +1,8 @@
 # Quantum Tensor Networks: From Theory to Implementation
 
 **Author**: Sung-Min Park  
-**Description**: Learning tensor networks by implementing core algorithms in Python and comparing with ITensor (Julia) references.  
 **Last Updated**: November 2025 (In progress)
+**Description**: Learning tensor networks by implementing core algorithms in Python and comparing with ITensor (Julia) references.  
 
 ---
 
