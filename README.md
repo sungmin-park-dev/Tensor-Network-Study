@@ -49,7 +49,42 @@
 - **Quantum Information**: Fisher information, squeezing, fidelity
 - **Spectral**: Energy gaps, eigenvalues, density of states
 
+## Repository Structure
+```
+Tensor-Network-Study/
+├── src/                      # Core library
+│   ├── tensor_network.py    # TN algorithms
+│   ├── observables.py       # Physical quantities
+│   ├── models.py            # Hamiltonians
+│   └── utils.py             # Utilities
+├── Docs/                     # Documentation
+├── Tutorials/                # Learning materials
+│   └── Notebooks/            
+│       └── ITensor_Reference/
+├── Projects/                 # Research projects
+├── Benchmarks/               # Performance analysis
+└── requirements.txt
+```
+
+## Quick Start
+```bash
+python -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+
+jupyter notebook Tutorials/Notebooks/
+```
+
+## Projects
+
+1. **1D_Gapped_Chains**: Ising, Heisenberg, XXZ, Cluster models
+2. **1D_Fermi_Hubbard**: Fermionic systems
+3. **1D_Critical_Phases**: CFT scaling, entanglement
+4. **Square_Lattice**: 2D spin models
+5. **Toric_Code**: Topological order
+
 ---
+
 
 ## Learning Resources
 
