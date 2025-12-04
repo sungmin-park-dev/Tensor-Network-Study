@@ -19,3 +19,6 @@ env/
 .pytest_cache/
 .coverage
 htmlcov/
+
+# Ignore Images in Tutorials
+Tutorials/Figures
