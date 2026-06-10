@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=64", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cluster-ising"
+version = "0.1.0"
+description = "Tensor Network simulation of the Cluster-Ising Model (PhysRevA.84.022304)"
+requires-python = ">=3.9"
+dependencies = [
+    "physics-tenpy>=1.0.0",
+    "numpy>=1.21",
+    "scipy>=1.7",
+    "matplotlib>=3.5",
+    "h5py>=3.0",
+    "tqdm>=4.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=7.0", "jupyter>=1.0"]
+nqs = ["netket>=3.0"]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["cluster_ising*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = [
+    "slow: long-running optimization checks",
+]
