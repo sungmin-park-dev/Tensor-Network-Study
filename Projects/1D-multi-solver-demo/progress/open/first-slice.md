@@ -1,12 +1,12 @@
 # First Slice
 
-상태: open  
+상태: open
 범위: `1D-multi-solver-demo`의 첫 구현 slice에서 사용할 Hamiltonian subset과 benchmark 후보
 
 ## 1. Purpose
 
 이 문서는 첫 구현 slice에만 해당하는 제한 조건을 관리한다. Full model Hamiltonian의 정의는
-[Models/1d-spin-chains/model-hamiltonian.md](../../../../../Models/1d-spin-chains/model-hamiltonian.md)에 두고,
+[Models/1d-spin-chains/model-hamiltonian.md](../../../../Models/1d-spin-chains/model-hamiltonian.md)에 두고,
 여기서는 구현 시작점으로 사용할 부분계와 benchmark 후보만 기록한다.
 
 ## 2. First-Slice Hamiltonian

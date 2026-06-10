@@ -62,7 +62,7 @@ Projects/1D-multi-solver-demo/
 | 4. 1D 모델 범위 | XXZ + Cluster + Zeeman Hamiltonian family | 결정됨: exact-solvable 지점 우선 |
 | 5. PBC/OBC 전략 | ED/NetKet PBC 쉬움, DMRG PBC는 seam으로 기록 | 결정됨: DMRG는 OBC primary, PBC exploratory |
 | 6. 데이터 흐름 | `TheorySpec -> ExpectedResults -> ChainGeometry -> HamiltonianSpec -> SolverResult` | 유지: 이론/기대값을 먼저 고정 |
-| 7. 파일 책임 | theory/report/code/data를 1차 하위 디렉터리로 분리 | 결정됨: project-local code와 `code-space/src/` 승격 후보를 구분 |
+| 7. 파일 책임 | model theory / progress / report / code / data를 분리 | 결정됨: reusable model theory는 `Models/`, project-local progress는 `progress/` |
 | 8. exact solution/validation | 각 term 조합의 검증 가능한 극단을 분리 | 결정됨: 첫 slice는 XXZ exact solution 중심 |
 | 9. 리포트/대시보드 | 보여줄 물리량과 플롯 항목을 사전에 정의 | 결정됨: viewer는 결과 리포트 역할 |
 | 10. seam 기록 | S1~S5를 1D에서 먼저 정리 | 유지: 2D 없이 1D evidence부터 작성 |
@@ -164,15 +164,13 @@ Projects/1D-multi-solver-demo/
   requirements.txt
   run_benchmarks.py
 
-  theory/
-    README.md
-    writing-guidelines.md
-    progress/
-      open/
-        first-slice.md
-      close/
-        README.md
-    observables-and-plots.md
+  progress/
+    open/
+      first-slice.md
+    close/
+      README.md
+
+  writing-guidelines.md
 
   one_dimensional_multi_solver_demo/
     __init__.py
@@ -197,6 +195,7 @@ Projects/1D-multi-solver-demo/
       geometry_diagrams.py
 
   reports/
+    observables-and-plots.md
     theory-summary.md
     run-summary.md
     findings.md
@@ -222,7 +221,9 @@ Projects/1D-multi-solver-demo/
 - project-local package로 시작한다.
 - 검증된 공통 코드는 바로 root package로 올리지 않고, 별도 결정 후 `code-space/src/`로 승격한다.
 - Cluster-Ising 프로젝트처럼 독립 실행 가능한 학습/검증 프로젝트로 둔다.
-- `theory/`는 project-local bridge, progress, report/spec 후보를 둔다.
+- `README.md`는 reusable model theory와 project-local execution을 연결하는 얇은 project note다.
+- `progress/`는 project-local implementation slice와 lifecycle note를 둔다.
+- `reports/`는 expected result, report/spec, findings 산출물을 둔다.
 - 재사용 가능한 Hamiltonian, parameter/symbol convention, exact solution 문서는 `../../Models/1d-spin-chains/`에서 관리한다.
 - `one_dimensional_multi_solver_demo/`는 실행 코드다.
 - `reports/`는 사람이 읽는 리포트 산출물이다.
@@ -361,9 +362,9 @@ Cluster term은 첫 slice 이후 추가한다.
   -> ../../Models/1d-spin-chains/model-hamiltonian.md
   -> ../../Models/1d-spin-chains/exact-solutions/xx-chain.md
   -> ../../Models/1d-spin-chains/exact-solutions/tfim-chain.md
-  -> theory/README.md
-  -> theory/progress/open/first-slice.md
-  -> theory/observables-and-plots.md
+  -> README.md
+  -> progress/open/first-slice.md
+  -> reports/observables-and-plots.md
   -> dashboard/report spec
   -> CLI args
   -> ChainGeometry
@@ -564,7 +565,7 @@ Cluster term은 첫 slice 이후 추가한다.
 - `xx-chain.md`: XX point finite-N/PBC reference.
 - `tfim-chain.md`: transverse-field Ising limit reference.
 
-### 7.14 `theory/observables-and-plots.md`
+### 7.14 `reports/observables-and-plots.md`
 
 책임:
 
@@ -779,9 +780,9 @@ LSWT 승격 위치는 구현 결과를 보고 판단한다. 지금은 정하지 
 4. `../../Models/1d-spin-chains/model-hamiltonian.md`: 최종적으로 풀 XXZ + Cluster + Zeeman 1D Hamiltonian을 작성.
 5. `../../Models/1d-spin-chains/exact-solutions/README.md`: exact solution 문서들의 공통 convention과 사용 목적을 정리.
 6. `../../Models/1d-spin-chains/exact-solutions/xx-chain.md`: XX point finite-N reference를 정리.
-7. `theory/README.md`: reusable model theory와 project-local progress의 연결을 정리.
-8. `theory/progress/open/first-slice.md`: 첫 slice의 구현 범위와 benchmark 후보를 확정.
-9. `theory/observables-and-plots.md`: 첫 slice에서 보여줄 물리량, 표, 플롯 항목을 확정.
+7. `README.md`: reusable model theory와 project-local execution의 연결을 정리.
+8. `progress/open/first-slice.md`: 첫 slice의 구현 범위와 benchmark 후보를 확정.
+9. `reports/observables-and-plots.md`: 첫 slice에서 보여줄 물리량, 표, 플롯 항목을 확정.
 10. `README.md`, `pyproject.toml`, package scaffold, tests scaffold.
 11. `geometry.py`: 1D OBC/PBC chain과 diagram metadata.
 12. `hamiltonian_specs.py`: XXZ + Zeeman subset spec만 먼저 구현하고 `K=0`으로 둔다.

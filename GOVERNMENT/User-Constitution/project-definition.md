@@ -47,7 +47,7 @@ The repo separates operating knowledge from project corpus.
 |---|---|
 | `Projects/1D-multi-solver-demo/` | Active 1D solver-seam and theory-first demo corpus |
 | `Models/1d-spin-chains/` | Reusable 1D spin-chain model definitions, conventions, and exact-solution notes |
-| `Projects/1D-multi-solver-demo/theory/` | Project-local theory bridge, writing rules, and implementation-slice progress |
+| `Projects/1D-multi-solver-demo/` | Active project root: local README, plan, progress, writing rules, and future project scripts |
 | `Projects/Cluster_Ising/` | Runnable Cluster-Ising paper reproduction and benchmark project |
 | `Tutorials/Notebooks/` | Learning notebooks and notebook helper code |
 | `code-space/src/` | Shared Python package skeleton |

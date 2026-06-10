@@ -24,7 +24,8 @@ TNS now separates:
 - Moved root `src/` to `code-space/src/`.
 - Created `Models/`.
 - Moved reusable 1D spin-chain model notes from `Projects/1D-multi-solver-demo/theory/` to `Models/1d-spin-chains/`.
-- Rewrote `Projects/1D-multi-solver-demo/theory/README.md` as a project-local bridge to `Models/1d-spin-chains/`.
+- Rewrote the project-local bridge as `Projects/1D-multi-solver-demo/README.md`.
+- Moved project-local progress to `Projects/1D-multi-solver-demo/progress/`.
 
 ## Verification Notes
 

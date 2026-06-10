@@ -98,7 +98,7 @@ exact reference를 얻을 수 있다.
 
 Exact solution의 세부 derivation과 finite-size caveat는 `exact-solutions/`에서 관리한다.
 프로젝트별 benchmark 사용 방식은 해당 project의 progress나 plan에서 관리한다. 예:
-[1D multi-solver first slice](../../Projects/1D-multi-solver-demo/theory/progress/open/first-slice.md).
+[1D multi-solver first slice](../../Projects/1D-multi-solver-demo/progress/open/first-slice.md).
 
 ## 4. 모델 해밀토니안의 물리적 특성
 
@@ -112,7 +112,7 @@ Exact solution의 세부 derivation과 finite-size caveat는 `exact-solutions/`�
 |---|---|
 | `parameters-and-symbols.md` | geometry symbol, model parameter, code field 이름의 source of truth |
 | `conventions.md` | indexing, boundary condition, operator normalization, sign convention |
-| [1D multi-solver first slice](../../Projects/1D-multi-solver-demo/theory/progress/open/first-slice.md) | 첫 구현 slice의 부분 Hamiltonian과 benchmark 후보 |
+| [1D multi-solver first slice](../../Projects/1D-multi-solver-demo/progress/open/first-slice.md) | 첫 구현 slice의 부분 Hamiltonian과 benchmark 후보 |
 | `exact-solutions/README.md` | exact solution 문서들의 공통 사용 규칙 |
 | `exact-solutions/xx-chain.md` | XX point finite-chain reference |
 | `exact-solutions/method/bethe-ansatz.md` | Bethe ansatz method and Heisenberg thermodynamic anchor |

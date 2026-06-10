@@ -19,7 +19,7 @@ This repository studies tensor-network methods through theory notes, notebooks, 
 - `Models/` owns reusable model theory; `Projects/` owns project-theme explanations and scripts; `code-space/` owns shared toolbox code.
 - Do not move or rename `Projects/`, `Models/`, `Tutorials/`, or `code-space/` without explicit user approval.
 - Do not create empty project directories as future-topic placeholders.
-- Do not absorb `Projects/1D-multi-solver-demo/theory/progress/open/` into repo-wide Working-Pad by default.
+- Do not absorb `Projects/1D-multi-solver-demo/progress/open/` into repo-wide Working-Pad by default.
 - Treat `GOVERNMENT/User-Constitution/` and `GOVERNMENT/Court-Precedents/` as protected canon.
 - Put active repo-wide issues, migration notes, and handoffs under `GOVERNMENT/Working-Pad/`.
 - Put agent procedures, policies, and templates under `GOVERNMENT/Agents-Bylaws/`.

@@ -35,6 +35,6 @@ into repo-wide task control.
 
 ## Consequences
 
-- Project-local notes such as `Projects/1D-multi-solver-demo/theory/progress/open/` are not automatically moved into `GOVERNMENT/Working-Pad/`.
+- Project-local notes such as `Projects/1D-multi-solver-demo/progress/open/` are not automatically moved into `GOVERNMENT/Working-Pad/`.
 - Future additional `*-space` roots such as `research-space/` or `study-space/` require a separate decision.
 - Physical movement of project files requires path-reference checks and runtime verification.

@@ -30,7 +30,8 @@ Project folders should remain focused on applying ideas: paper experiments, scri
 
 ## Consequences
 
-- `Projects/1D-multi-solver-demo/theory/` becomes a project-local theory bridge and progress area.
+- `Projects/1D-multi-solver-demo/README.md` links project work to reusable model theory.
+- `Projects/1D-multi-solver-demo/progress/` owns project-local implementation-slice progress.
 - Reusable 1D spin-chain theory moves to `Models/1d-spin-chains/`.
 - Code promotion targets `code-space/`, not root `src/`.
 - A future model or paper should start as an issue/plan or model note before becoming a project root.

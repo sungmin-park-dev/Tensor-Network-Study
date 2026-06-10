@@ -31,7 +31,7 @@ Tensor-Network-Study is a research and study repository for tensor-network theor
 - `Projects/` is official project corpus, not a scratch area and not a GOVERNMENT layer.
 - Root `README.md` is intentionally thin. Detailed project definition lives in `GOVERNMENT/User-Constitution/project-definition.md`.
 - `GOVERNMENT/` controls project definition, operating procedure, decisions, and active task flow. It does not replace project content.
-- `Projects/1D-multi-solver-demo/theory/progress/open/` is project-local lifecycle unless the user explicitly promotes an item to repo-wide Working-Pad.
+- `Projects/1D-multi-solver-demo/progress/open/` is project-local lifecycle unless the user explicitly promotes an item to repo-wide Working-Pad.
 - Keep reusable model theory under `Models/`, not duplicated inside each project.
 - Keep shared toolbox code under `code-space/`.
 - Do not infer AAD `product-space` semantics for TNS. The TNS `code-space/` root is a local shared-toolbox root.
