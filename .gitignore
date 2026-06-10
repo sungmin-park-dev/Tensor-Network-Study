@@ -22,3 +22,8 @@ htmlcov/
 
 # Ignore Images in Tutorials
 Tutorials/Figures
+
+# Project-local generated artifacts
+Projects/Cluster_Ising/.mplconfig/
+Projects/Cluster_Ising/data/figures/
+Projects/Cluster_Ising/notebooks/*.png
