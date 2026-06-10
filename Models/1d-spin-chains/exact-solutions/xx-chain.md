@@ -43,8 +43,38 @@ S_i^+S_{i+1}^-+S_i^-S_{i+1}^+
 \qquad 0\le i\le L-2.
 $$
 
-The only extra finite-chain issue is the PBC boundary link. With total fermion parity
-$\Pi=(-1)^{N_f}$,
+The only extra finite-chain issue is the PBC boundary link. Let
+$\pi_i=1-2n_i$ and define the total fermion parity as
+
+$$
+\Pi=\prod_{i=0}^{L-1}\pi_i=(-1)^{N_f}.
+$$
+
+Because $P_0=1$ and $\pi_{L-1}^2=1$, the boundary string is
+
+$$
+P_{L-1}=\prod_{\ell=0}^{L-2}\pi_\ell=\Pi\pi_{L-1}.
+$$
+
+Using $c_{L-1}^\dagger\Pi=-\Pi c_{L-1}^\dagger$,
+$c_{L-1}^\dagger\pi_{L-1}=c_{L-1}^\dagger$,
+$\pi_{L-1}c_{L-1}=c_{L-1}$, and $c_{L-1}c_0^\dagger=-c_0^\dagger c_{L-1}$,
+the two boundary exchange terms become
+
+$$
+\begin{aligned}
+S_{L-1}^+S_0^-
+&=c_{L-1}^\dagger P_{L-1}c_0
+=c_{L-1}^\dagger\Pi\pi_{L-1}c_0
+=-\Pi c_{L-1}^\dagger c_0,\\
+S_{L-1}^-S_0^+
+&=P_{L-1}c_{L-1}c_0^\dagger
+=\Pi\pi_{L-1}c_{L-1}c_0^\dagger
+=-\Pi c_0^\dagger c_{L-1}.
+\end{aligned}
+$$
+
+Therefore
 
 $$
 S_{L-1}^+S_0^-+S_{L-1}^-S_0^+
