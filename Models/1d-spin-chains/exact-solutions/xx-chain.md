@@ -146,21 +146,49 @@ $K_{\lambda_{\Pi}}$ of a fixed parity sector.
 
 ### Ground-State Energy
 
-For OBC, the ground-state energy is
+For OBC, the finite-$L$ ground-state energy is the finite sum over occupied negative one-particle
+levels:
 
 $$
 E_0^{\mathrm{OBC}}=\sum_{\epsilon_m<0}\epsilon_m,
 $$
 
-up to finite-size zero-mode degeneracy.
+up to finite-size zero-mode degeneracy. This is an exact finite-chain value, not a thermodynamic-limit
+estimate.
 
-For PBC, the ground-state energy is the minimum over parity-consistent fillings:
+For PBC, the same filling rule must be applied inside each fermion-parity sector. The finite-chain
+ground-state energy is
 
 $$
 E_0^{\mathrm{PBC}}
 =\min_{\lambda_{\Pi}=\pm1}
 \min_{\{n_k\}:\,(-1)^{\sum_k n_k}=\lambda_{\Pi}}
 \sum_{k\in K_{\lambda_{\Pi}}} n_k\,J_{xy}\cos k.
+$$
+
+This is also an exact finite-chain prescription: evaluate the two parity sectors and choose the lower
+energy, allowing zero-mode degeneracy when $\epsilon(k)=0$.
+
+For the first-slice benchmark point $L=8$, `periodic`, and $J_{xy}=1$, the two sectors give
+
+$$
+E_{\lambda_{\Pi}=-1}=-1-\sqrt{2},
+$$
+
+from the occupied momenta $k=3\pi/4,\pi,5\pi/4$, and
+
+$$
+E_{\lambda_{\Pi}=+1}
+=2\cos\frac{5\pi}{8}+2\cos\frac{7\pi}{8}
+=-\sqrt{2+\sqrt{2}}-\sqrt{2-\sqrt{2}}.
+$$
+
+Therefore the exact finite-chain PBC ground-state energy for this benchmark is
+
+$$
+E_0^{\mathrm{PBC}}(L=8,J_{xy}=1)
+=-\sqrt{2+\sqrt{2}}-\sqrt{2-\sqrt{2}}
+\approx -2.6131259298.
 $$
 
 ### Energy Density
