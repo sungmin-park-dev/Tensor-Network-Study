@@ -136,15 +136,25 @@ $$
 
 ## Physical Quantities
 
-- The many-body energy is obtained by filling one-particle levels.
-- For OBC, the ground-state energy is
+### Many-Body Energy From Filled Levels
+
+The many-body energy is obtained by filling one-particle levels.
+
+For OBC, the occupation variables are $n_m\in\{0,1\}$ for the standing-wave modes
+$m=1,2,\ldots,L$. For PBC, the occupation variables are $n_k\in\{0,1\}$ on the momentum grid
+$K_{\lambda_{\Pi}}$ of a fixed parity sector.
+
+### Ground-State Energy
+
+For OBC, the ground-state energy is
 
 $$
 E_0^{\mathrm{OBC}}=\sum_{\epsilon_m<0}\epsilon_m,
 $$
 
-  up to finite-size zero-mode degeneracy.
-- For PBC, the ground-state energy is the minimum over parity-consistent fillings:
+up to finite-size zero-mode degeneracy.
+
+For PBC, the ground-state energy is the minimum over parity-consistent fillings:
 
 $$
 E_0^{\mathrm{PBC}}
@@ -153,8 +163,21 @@ E_0^{\mathrm{PBC}}
 \sum_{k\in K_{\lambda_{\Pi}}} n_k\,J_{xy}\cos k.
 $$
 
-- The site-normalized energy is $e_0=E_0/L$.
-- The total spin and fermion number are related by $S_{\mathrm{tot}}^z=N_f-L/2$.
+### Energy Density
+
+The site-normalized energy is
+
+$$
+e_0=\frac{E_0}{L}.
+$$
+
+### Fermion Number And Total Spin
+
+The total spin and fermion number are related by
+
+$$
+S_{\mathrm{tot}}^z=N_f-\frac{L}{2}.
+$$
 
 ## References
 
