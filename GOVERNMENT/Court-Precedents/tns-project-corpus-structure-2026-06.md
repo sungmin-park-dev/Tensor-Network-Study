@@ -14,14 +14,14 @@ reviewed-at: 2026-06-10
 
 ## Decision
 
-`Projects/` is limited to concrete project corpus roots.
+`Projects/` is limited to concrete project-theme corpus roots.
 
 Current project roots:
 
 - `Projects/1D-multi-solver-demo/`
 - `Projects/Cluster_Ising/`
 
-Empty topic placeholders such as old planned model folders are not part of the project corpus. Future project roots should be created only when they have an approved plan and initial content.
+Empty topic placeholders such as old planned model folders are not part of the project corpus. Future project roots should be created only when they have an approved plan and initial content. Reusable model explanations belong in `Models/`, not in empty project placeholders.
 
 ## Rationale
 
@@ -33,3 +33,4 @@ The project definition should distinguish active evidence-bearing work from poss
 - Detailed project definition lives in `GOVERNMENT/User-Constitution/project-definition.md`.
 - `Projects/README.md` and `Projects/map-projects.md` describe current active project roots.
 - Roadmap or future-topic planning belongs in `GOVERNMENT/Working-Pad/` or a project-local `PLAN.md`, not in empty folders.
+- Reusable model theory belongs in `Models/`.

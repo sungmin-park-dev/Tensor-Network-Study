@@ -38,4 +38,4 @@ reference로 어떤 값을 사용할지는 별도 limit 문서와 progress note�
 
 - C. N. Yang and C. P. Yang, "One-Dimensional Chain of Anisotropic Spin-Spin Interactions. I. Proof of Bethe's Hypothesis for Ground State in a Finite System", Physical Review 150, 321 (1966).
 - [../../model-hamiltonian.md](../../model-hamiltonian.md)
-- [../../progress/open/first-slice.md](../../progress/open/first-slice.md)
+- [1D multi-solver first slice](../../../../Projects/1D-multi-solver-demo/theory/progress/open/first-slice.md)

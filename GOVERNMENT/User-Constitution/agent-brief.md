@@ -21,9 +21,10 @@ Tensor-Network-Study is a research and study repository for tensor-network theor
 | `GOVERNMENT/Working-Pad/TASK-QUEUE.md` | You need the next active repo-wide task |
 | `GOVERNMENT/Court-Precedents/` | You need accepted structural decisions |
 | `GOVERNMENT/Agents-Bylaws/` | You need agent procedures, migration rules, maps, or templates |
+| `Models/` | You need reusable model theory, introductions, conventions, or exact references |
 | `Projects/` | You need project-specific plans, theory notes, runnable demos, or benchmarks |
 | `Tutorials/` | You need learning notebooks or study material |
-| `src/` | You need the current core library skeleton |
+| `code-space/` | You need shared code or personal toolbox components |
 
 ## Boundaries
 
@@ -31,8 +32,9 @@ Tensor-Network-Study is a research and study repository for tensor-network theor
 - Root `README.md` is intentionally thin. Detailed project definition lives in `GOVERNMENT/User-Constitution/project-definition.md`.
 - `GOVERNMENT/` controls project definition, operating procedure, decisions, and active task flow. It does not replace project content.
 - `Projects/1D-multi-solver-demo/theory/progress/open/` is project-local lifecycle unless the user explicitly promotes an item to repo-wide Working-Pad.
-- Keep `src/` as the existing runtime root unless a later approved plan moves it.
-- Do not infer AAD `product-space/` or `code-space/` names for TNS.
+- Keep reusable model theory under `Models/`, not duplicated inside each project.
+- Keep shared toolbox code under `code-space/`.
+- Do not infer AAD `product-space` semantics for TNS. The TNS `code-space/` root is a local shared-toolbox root.
 
 ## Protected Areas
 

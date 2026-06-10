@@ -1,6 +1,6 @@
 # Tensor-Network-Study
 
-Tensor-Network-Study is a research and study repository for tensor-network theory, implementation practice, and solver benchmark experiments.
+Tensor-Network-Study is a research and study repository for tensor-network theory, paper-application experiments, solver benchmarks, and a gradually built personal TN toolbox.
 
 This README is intentionally thin. The detailed project definition and operating boundaries live in `GOVERNMENT/User-Constitution/project-definition.md`.
 
@@ -11,9 +11,10 @@ This README is intentionally thin. The detailed project definition and operating
 | Current repo layout | `map-repo.md` |
 | Detailed project definition | `GOVERNMENT/User-Constitution/project-definition.md` |
 | Active repo-wide work | `GOVERNMENT/Working-Pad/TASK-QUEUE.md` |
-| Project plans and theory notes | `Projects/` |
+| Reusable model theory | `Models/` |
+| Project themes, scripts, and local plans | `Projects/` |
 | Study notebooks | `Tutorials/` |
-| Runtime package skeleton | `src/` |
+| Shared toolbox code | `code-space/` |
 
 ## Quick Start
 
@@ -26,4 +27,4 @@ jupyter notebook Tutorials/Notebooks/
 
 ## Boundary
 
-`Projects/`, `Tutorials/`, and `src/` are the project corpus. `GOVERNMENT/` is the operating layer for decisions, agent rules, task control, and project definition.
+`Models/`, `Projects/`, `Tutorials/`, and `code-space/` are the project corpus. `GOVERNMENT/` is the operating layer for decisions, agent rules, task control, and project definition.

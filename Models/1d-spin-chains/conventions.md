@@ -1,14 +1,14 @@
 # Conventions
 
 상태: 1차 이론 명세  
-범위: `1D-multi-solver-demo`의 문서, 코드, 리포트가 공유해야 하는 해석 규약
+범위: TNS 1D spin-chain model notes and projects의 문서, 코드, 리포트가 공유해야 하는 해석 규약
 
 ## 1. Purpose
 
-이 문서는 `1D-multi-solver-demo`에서 사용하는 indexing, boundary condition, operator
-normalization, sign convention, numerical comparison convention을 고정한다. 기호와 코드 field
-이름은 [parameters-and-symbols.md](parameters-and-symbols.md)에서 관리하며, 이 문서는 그
-기호들이 어떤 물리적 의미와 계산 규칙을 갖는지 정의한다.
+이 문서는 TNS의 1D spin-chain model notes와 관련 project에서 사용하는 indexing, boundary
+condition, operator normalization, sign convention, numerical comparison convention을 고정한다.
+기호와 코드 field 이름은 [parameters-and-symbols.md](parameters-and-symbols.md)에서 관리하며,
+이 문서는 그 기호들이 어떤 물리적 의미와 계산 규칙을 갖는지 정의한다.
 
 이 convention은 [model-hamiltonian.md](model-hamiltonian.md)의 Hamiltonian 정의에 적용된다.
 특히 geometry symbol $\mathcal{G}$, chain length $L$, boundary condition $b$, model parameters

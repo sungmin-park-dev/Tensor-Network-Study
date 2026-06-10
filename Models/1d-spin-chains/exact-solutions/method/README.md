@@ -22,4 +22,4 @@ solvable limit에서만 사용한다.
 ## 참고 문서
 
 - [../../model-hamiltonian.md](../../model-hamiltonian.md)
-- [../../progress/open/first-slice.md](../../progress/open/first-slice.md)
+- [1D multi-solver first slice](../../../../Projects/1D-multi-solver-demo/theory/progress/open/first-slice.md)

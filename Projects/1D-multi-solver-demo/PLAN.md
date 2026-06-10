@@ -22,7 +22,7 @@ Projects/1D-multi-solver-demo/
 
 - 2D 구현은 지금 계획에서 분리한다.
 - 1D가 완성되기 전까지 2D `4x4` PBC는 생각하지 않는다.
-- 첫 구현은 project-local package 안에만 둔다. top-level `src/`는 건드리지 않는다.
+- 첫 구현은 project-local package 안에만 둔다. 검증된 공통 코드는 별도 결정 후 `code-space/src/`로 승격한다.
 - 기존 `Projects/Cluster_Ising` 하네스의 CLI, solver dispatch, 결과표, 플롯, TeNPy/NetKet 패턴은 재사용한다.
 - 최종 목표는 XXZ, Cluster, Zeeman term 조합을 같은 1D 하네스에서 동시 실행 가능하게 만드는 것이다.
 - 첫 구현 slice는 코드부터 시작하지 않는다. 먼저 이론 문서와 기대 결과/리포트 스펙을 작성한 뒤, XXZ 1D ED/exact/geometry를 구현한다.
@@ -62,7 +62,7 @@ Projects/1D-multi-solver-demo/
 | 4. 1D 모델 범위 | XXZ + Cluster + Zeeman Hamiltonian family | 결정됨: exact-solvable 지점 우선 |
 | 5. PBC/OBC 전략 | ED/NetKet PBC 쉬움, DMRG PBC는 seam으로 기록 | 결정됨: DMRG는 OBC primary, PBC exploratory |
 | 6. 데이터 흐름 | `TheorySpec -> ExpectedResults -> ChainGeometry -> HamiltonianSpec -> SolverResult` | 유지: 이론/기대값을 먼저 고정 |
-| 7. 파일 책임 | theory/report/code/data를 1차 하위 디렉터리로 분리 | 결정됨: top-level `src/`는 건드리지 않음 |
+| 7. 파일 책임 | theory/report/code/data를 1차 하위 디렉터리로 분리 | 결정됨: project-local code와 `code-space/src/` 승격 후보를 구분 |
 | 8. exact solution/validation | 각 term 조합의 검증 가능한 극단을 분리 | 결정됨: 첫 slice는 XXZ exact solution 중심 |
 | 9. 리포트/대시보드 | 보여줄 물리량과 플롯 항목을 사전에 정의 | 결정됨: viewer는 결과 리포트 역할 |
 | 10. seam 기록 | S1~S5를 1D에서 먼저 정리 | 유지: 2D 없이 1D evidence부터 작성 |
@@ -79,7 +79,7 @@ Projects/1D-multi-solver-demo/
 7. 첫 slice의 검증 지점 초안은 두 개다. 이 내용은 theory 문서와 exact reference 정리 과정에서 변경될 수 있다.
    - `BP-XXZ-1`: `N=8` PBC, `Delta=0`, XX free-fermion finite-N exact value와 ED 비교.
    - `BP-XXZ-2`: `N=8` PBC, `Delta=1`, ED finite-N 값과 Heisenberg thermodynamic anchor `1/4 - log(2)`를 구분해 기록.
-8. Cluster term convention은 지금 확정하지 않고 `theory/model-hamiltonian.md` 작성 중에 다시 검토한다.
+8. Cluster term convention은 지금 확정하지 않고 `../../Models/1d-spin-chains/model-hamiltonian.md` 작성 중에 다시 검토한다.
 
 ### 0.5 Roadmap
 
@@ -129,7 +129,7 @@ Projects/1D-multi-solver-demo/
 - 2D square lattice 구현.
 - 2D `4x4` PBC DMRG/NQS benchmark.
 - LSWT 패키지 리팩터.
-- top-level `src/` 공통 추상화 승격.
+- 검증 전 `code-space/src/` 공통 추상화 승격.
 - LSWT repo 파일 수정.
 
 2D는 1D 구현과 리뷰가 끝난 뒤 별도 `PLAN.md` 또는 별도 섹션으로 다시 논의한다.
@@ -166,13 +166,12 @@ Projects/1D-multi-solver-demo/
 
   theory/
     README.md
-    parameters-and-symbols.md
-    model-hamiltonian.md
-    conventions.md
-    exact-solutions/
-      README.md
-      xx-chain.md
-      heisenberg-chain.md
+    writing-guidelines.md
+    progress/
+      open/
+        first-slice.md
+      close/
+        README.md
     observables-and-plots.md
 
   one_dimensional_multi_solver_demo/
@@ -221,16 +220,17 @@ Projects/1D-multi-solver-demo/
 현재 판단:
 
 - project-local package로 시작한다.
-- top-level `src/`는 건드리지 않는다.
+- 검증된 공통 코드는 바로 root package로 올리지 않고, 별도 결정 후 `code-space/src/`로 승격한다.
 - Cluster-Ising 프로젝트처럼 독립 실행 가능한 학습/검증 프로젝트로 둔다.
-- `theory/`는 사람이 읽는 Hamiltonian, parameter/symbol convention, exact solution, observable/plot 문서다. 한 문서에 과도하게 몰아넣지 않고 작은 문서 묶음으로 유지한다.
+- `theory/`는 project-local bridge, progress, report/spec 후보를 둔다.
+- 재사용 가능한 Hamiltonian, parameter/symbol convention, exact solution 문서는 `../../Models/1d-spin-chains/`에서 관리한다.
 - `one_dimensional_multi_solver_demo/`는 실행 코드다.
 - `reports/`는 사람이 읽는 리포트 산출물이다.
 - `data/`는 재현 가능한 raw/processed output, figure/table artifact, run JSON을 둔다.
 
 명칭 정리:
 
-- `exact-solvable-limits.md` 같은 단일 문서보다 `theory/exact-solutions/` 폴더를 사용한다. XX chain, Heisenberg chain처럼 exact solution별로 나누어 finite-size caveat와 reference 용도를 분리하기 위해서다.
+- `exact-solvable-limits.md` 같은 단일 문서보다 `../../Models/1d-spin-chains/exact-solutions/` 폴더를 사용한다. XX chain, Heisenberg chain처럼 exact solution별로 나누어 finite-size caveat와 reference 용도를 분리하기 위해서다.
 - `base_solver.py`는 사용하지 않는다. `base`가 무엇의 base인지 모호하므로 공통 결과 타입은 `solvers/solver_results.py`에 둔다.
 - `model_specs.py`보다 `hamiltonian_specs.py`를 사용한다. 이 프로젝트의 중심 객체가 model 일반론이 아니라 Hamiltonian term 구성과 coupling spec이기 때문이다.
 - `crosscheck.py`보다 `validation.py`를 사용한다. exact/ED 비교, tolerance, pass/fail 판정까지 포함하기 때문이다.
@@ -355,12 +355,14 @@ Cluster term은 첫 slice 이후 추가한다.
 공통 흐름:
 
 ```text
-theory/README.md
-  -> theory/parameters-and-symbols.md
-  -> theory/conventions.md
-  -> theory/model-hamiltonian.md
-  -> theory/exact-solutions/xx-chain.md
-  -> theory/exact-solutions/heisenberg-chain.md
+../../Models/1d-spin-chains/README.md
+  -> ../../Models/1d-spin-chains/parameters-and-symbols.md
+  -> ../../Models/1d-spin-chains/conventions.md
+  -> ../../Models/1d-spin-chains/model-hamiltonian.md
+  -> ../../Models/1d-spin-chains/exact-solutions/xx-chain.md
+  -> ../../Models/1d-spin-chains/exact-solutions/tfim-chain.md
+  -> theory/README.md
+  -> theory/progress/open/first-slice.md
   -> theory/observables-and-plots.md
   -> dashboard/report spec
   -> CLI args
@@ -527,7 +529,7 @@ theory/README.md
 - S1~S5 evidence 수집.
 - findings draft 생성.
 
-### 7.10 `theory/parameters-and-symbols.md`
+### 7.10 `../../Models/1d-spin-chains/parameters-and-symbols.md`
 
 책임:
 
@@ -535,7 +537,7 @@ theory/README.md
 - 코드 field 이름과 theory symbol의 대응을 정의한다.
 - 새 persistent parameter는 다른 theory 문서에서 사용하기 전에 여기서 먼저 정의한다.
 
-### 7.11 `theory/model-hamiltonian.md`
+### 7.11 `../../Models/1d-spin-chains/model-hamiltonian.md`
 
 책임:
 
@@ -543,7 +545,7 @@ theory/README.md
 - XXZ, Zeeman, Cluster term의 물리적 정의를 쓴다.
 - parameter/code-field mapping의 세부 표는 `parameters-and-symbols.md`로 넘긴다.
 
-### 7.12 `theory/conventions.md`
+### 7.12 `../../Models/1d-spin-chains/conventions.md`
 
 책임:
 
@@ -551,14 +553,16 @@ theory/README.md
 - sign convention, site indexing, OBC/PBC convention을 정리한다.
 - Hamiltonian 문서와 exact solution 문서가 같은 convention을 쓰도록 연결한다.
 
-### 7.13 `theory/exact-solutions/`
+### 7.13 `../../Models/1d-spin-chains/exact-solutions/`
 
 책임:
 
 - exact solution을 한 파일에 몰아넣지 않고 solution family별로 나눈다.
 - `README.md`: exact solution 문서들의 용도와 공통 convention.
+- `method/bethe-ansatz.md`: Bethe ansatz method와 Heisenberg thermodynamic anchor.
+- `method/jordan-wigner.md`: Jordan-Wigner transformation method.
 - `xx-chain.md`: XX point finite-N/PBC reference.
-- `heisenberg-chain.md`: Heisenberg thermodynamic-limit anchor와 finite-N ED 값의 차이.
+- `tfim-chain.md`: transverse-field Ising limit reference.
 
 ### 7.14 `theory/observables-and-plots.md`
 
@@ -651,7 +655,7 @@ theory/README.md
 - reference: 예, XX finite-N free-fermion exact value.
 - pass/fail criterion: 예, `abs(dE/L) <= 1e-12`.
 
-첫 slice의 benchmark point는 XXZ 1D ED/exact/geometry에 한정한다. 아래 두 항목은 현재 후보이며, `theory/exact-solutions/` 작성 과정에서 수정될 수 있다.
+첫 slice의 benchmark point는 XXZ 1D ED/exact/geometry에 한정한다. 아래 두 항목은 현재 후보이며, `../../Models/1d-spin-chains/exact-solutions/` 작성 과정에서 수정될 수 있다.
 
 ```text
 BP-XXZ-1:
@@ -769,20 +773,21 @@ LSWT 승격 위치는 구현 결과를 보고 판단한다. 지금은 정하지 
 
 ### 11.1 첫 구현 slice: theory docs + expected results + XXZ 1D ED/exact/geometry
 
-1. `theory/README.md`: 이론 문서의 읽기 순서와 각 문서 책임을 정리.
-2. `theory/parameters-and-symbols.md`: parameter, symbol, code field naming을 분리해 정의.
-3. `theory/conventions.md`: spin/Pauli, sign, site indexing, OBC/PBC convention을 정리.
-4. `theory/model-hamiltonian.md`: 최종적으로 풀 XXZ + Cluster + Zeeman 1D Hamiltonian을 작성.
-5. `theory/exact-solutions/README.md`: exact solution 문서들의 공통 convention과 사용 목적을 정리.
-6. `theory/exact-solutions/xx-chain.md`: XX point finite-N reference를 정리.
-7. `theory/exact-solutions/heisenberg-chain.md`: Heisenberg thermodynamic anchor와 finite-N caveat를 정리.
-8. `theory/observables-and-plots.md`: 첫 slice에서 보여줄 물리량, 표, 플롯 항목을 확정.
-9. `README.md`, `pyproject.toml`, package scaffold, tests scaffold.
-10. `geometry.py`: 1D OBC/PBC chain과 diagram metadata.
-11. `hamiltonian_specs.py`: XXZ + Zeeman subset spec만 먼저 구현하고 `K=0`으로 둔다.
-10. exact reference 코드를 문서의 validation 기준에 맞춰 구현.
-11. ED Hamiltonian 구현.
-12. 확정된 첫 slice 검증 지점에서 exact와 ED 비교.
+1. `../../Models/1d-spin-chains/README.md`: reusable model theory의 읽기 순서와 각 문서 책임을 정리.
+2. `../../Models/1d-spin-chains/parameters-and-symbols.md`: parameter, symbol, code field naming을 분리해 정의.
+3. `../../Models/1d-spin-chains/conventions.md`: spin/Pauli, sign, site indexing, OBC/PBC convention을 정리.
+4. `../../Models/1d-spin-chains/model-hamiltonian.md`: 최종적으로 풀 XXZ + Cluster + Zeeman 1D Hamiltonian을 작성.
+5. `../../Models/1d-spin-chains/exact-solutions/README.md`: exact solution 문서들의 공통 convention과 사용 목적을 정리.
+6. `../../Models/1d-spin-chains/exact-solutions/xx-chain.md`: XX point finite-N reference를 정리.
+7. `theory/README.md`: reusable model theory와 project-local progress의 연결을 정리.
+8. `theory/progress/open/first-slice.md`: 첫 slice의 구현 범위와 benchmark 후보를 확정.
+9. `theory/observables-and-plots.md`: 첫 slice에서 보여줄 물리량, 표, 플롯 항목을 확정.
+10. `README.md`, `pyproject.toml`, package scaffold, tests scaffold.
+11. `geometry.py`: 1D OBC/PBC chain과 diagram metadata.
+12. `hamiltonian_specs.py`: XXZ + Zeeman subset spec만 먼저 구현하고 `K=0`으로 둔다.
+13. exact reference 코드를 문서의 validation 기준에 맞춰 구현.
+14. ED Hamiltonian 구현.
+15. 확정된 첫 slice 검증 지점에서 exact와 ED 비교.
 13. 필요한 경우 thermodynamic-limit anchor와 finite-N ED 값을 분리해 기록.
 14. 1D geometry diagram으로 OBC/PBC bonds와 site index 확인.
 15. `reports/theory-summary.md`와 `reports/run-summary.md`에 첫 slice 결과를 요약.

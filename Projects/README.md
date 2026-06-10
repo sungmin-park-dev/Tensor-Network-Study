@@ -1,6 +1,6 @@
 # Projects
 
-`Projects/` contains concrete TNS project corpus: plans, theory notes, runnable research demos, tests, notebooks, and project-local progress.
+`Projects/` contains concrete TNS project-theme corpus: short project-specific theory explanations, paper-application experiments, runnable scripts, tests, notebooks, and project-local progress.
 
 This folder is not a backlog of possible topics. Only active or evidence-bearing project roots should live here.
 
@@ -14,5 +14,7 @@ This folder is not a backlog of possible topics. Only active or evidence-bearing
 ## Boundary
 
 - Keep project-local progress inside the relevant project.
+- Keep reusable model introductions under `../Models/`.
 - Do not promote project-local progress into `GOVERNMENT/Working-Pad/` unless it coordinates repo-wide work.
 - Do not create placeholder project folders without an approved plan and initial content.
+- Promote toolbox components to `../code-space/` only after a project has produced reusable evidence.

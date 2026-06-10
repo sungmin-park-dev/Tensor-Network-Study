@@ -11,7 +11,7 @@ updated: 2026-06-10
 # Map - Projects
 
 - Agent navigation for the TNS project corpus.
-- Project roots should contain concrete plans, theory notes, runnable code, benchmarks, tests, or evidence.
+- Project roots should contain concrete plans, project-specific theory summaries, paper-application work, runnable scripts, benchmarks, tests, or evidence.
 - Empty topic placeholders do not belong here.
 
 ## Contents
@@ -27,3 +27,5 @@ updated: 2026-06-10
 - Read a project root's `PLAN.md` or `README.md` before editing inside it.
 - Do not create empty project directories as future-topic placeholders.
 - Do not move project roots into `GOVERNMENT/`.
+- Link to `../Models/` for reusable model theory instead of duplicating it in each project.
+- Do not promote toolbox code into `../code-space/` until project-local validation supports reuse.

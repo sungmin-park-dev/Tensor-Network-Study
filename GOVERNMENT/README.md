@@ -26,9 +26,9 @@ This folder is the repo-local operating layer for Tensor-Network-Study.
 - `User-Constitution/` and `Court-Precedents/` are protected canon.
 - Agent-maintained operating procedure belongs in `Agents-Bylaws/`.
 - Active or unresolved work belongs in `Working-Pad/`.
-- TNS project corpus belongs in `Projects/`, `Tutorials/`, and `src/` unless the user approves a later move.
+- TNS project corpus belongs in `Models/`, `Projects/`, `Tutorials/`, and `code-space/` unless the user approves a later move.
 - Root `README.md` stays thin; detailed project definition belongs in `User-Constitution/project-definition.md`.
-- Do not create `agent-wiki/`, `product-space/`, or `code-space/` as default migration targets for this repo.
+- Do not create `agent-wiki/` or `product-space/` as default migration targets for this repo; TNS `code-space/` is the approved shared-code root.
 
 ## Maps
 

@@ -1,14 +1,14 @@
 # Parameters And Symbols
 
 상태: 1차 이론 명세  
-범위: `1D-multi-solver-demo`의 system geometry symbol, model parameter, derived quantity, code field naming
+범위: TNS 1D spin-chain model notes and projects의 system geometry symbol, model parameter, derived quantity, code field naming
 
 ## 1. Purpose
 
-이 문서는 `1D-multi-solver-demo`에서 반복적으로 사용하는 기호와 코드 field 이름의 대응을
-관리한다. 다른 이론 문서는 이 문서에서 정의한 기호를 참조한다. 이 문서에서는 system geometry와
-model parameter를 명시적으로 구분한다. $L$과 $b$는 물리 시스템의 기하학적 specification이며,
-Hamiltonian model parameter가 아니다.
+이 문서는 TNS의 1D spin-chain model notes와 관련 project에서 반복적으로 사용하는 기호와 코드
+field 이름의 대응을 관리한다. 다른 이론 문서는 이 문서에서 정의한 기호를 참조한다. 이 문서에서는
+system geometry와 model parameter를 명시적으로 구분한다. $L$과 $b$는 물리 시스템의 기하학적
+specification이며, Hamiltonian model parameter가 아니다.
 
 ## 2. System Geometry Symbols
 

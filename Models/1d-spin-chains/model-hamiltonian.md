@@ -1,11 +1,11 @@
-# Model Hamiltonian
+# 1D Spin-Chain Model Hamiltonian
 
 상태: 1차 이론 명세  
-범위: `1D-multi-solver-demo`에서 사용할 1D spin-1/2 Hamiltonian family
+범위: TNS 프로젝트에서 재사용할 1D spin-1/2 Hamiltonian family
 
 ## 1. 도입
 
-- 이 문서는 `1D-multi-solver-demo`에서 다룰 1D spin-1/2 Hamiltonian family를 정의한다.
+- 이 문서는 TNS 프로젝트에서 재사용할 1D spin-1/2 Hamiltonian family를 정의한다.
 - Geometry symbol, model parameter, code field 이름의 표준 정의는
   [parameters-and-symbols.md](parameters-and-symbols.md)에서 관리한다.
 - Indexing, boundary condition, operator normalization, sign convention은
@@ -89,15 +89,16 @@ exact reference를 얻을 수 있다.
 
 | Limit | Condition | Method | Reference note |
 |---|---|---|---|
-| XXZ chain | $K=0$, $h_x=0$ | Bethe ansatz | `xxz-chain.md` |
+| XXZ chain | $K=0$, $h_x=0$ | Bethe ansatz | `exact-solutions/method/bethe-ansatz.md` |
 | XX point | $K=0$, $h_x=h_z=0$, $J_z=0$ | Jordan-Wigner / free fermion | `xx-chain.md` |
-| Heisenberg AFM point | $K=0$, $h_x=h_z=0$, $J_{xy}=J_z=1$ | Bethe ansatz | `heisenberg-chain.md` |
+| Heisenberg AFM point | $K=0$, $h_x=h_z=0$, $J_{xy}=J_z=1$ | Bethe ansatz | `exact-solutions/method/bethe-ansatz.md` |
 | TFIM limit | $K=0$, $J_{xy}=0$, $J_z\ne0$, $h_x\ne0$ | Jordan-Wigner | `tfim-chain.md` |
 
 
 
-Exact solution의 세부 derivation, finite-size caveat, benchmark 사용 방식은 `exact-solutions/`와
-[progress/open/first-slice.md](progress/open/first-slice.md)에서 관리한다.
+Exact solution의 세부 derivation과 finite-size caveat는 `exact-solutions/`에서 관리한다.
+프로젝트별 benchmark 사용 방식은 해당 project의 progress나 plan에서 관리한다. 예:
+[1D multi-solver first slice](../../Projects/1D-multi-solver-demo/theory/progress/open/first-slice.md).
 
 ## 4. 모델 해밀토니안의 물리적 특성
 
@@ -111,8 +112,7 @@ Exact solution의 세부 derivation, finite-size caveat, benchmark 사용 방식
 |---|---|
 | `parameters-and-symbols.md` | geometry symbol, model parameter, code field 이름의 source of truth |
 | `conventions.md` | indexing, boundary condition, operator normalization, sign convention |
-| `progress/open/first-slice.md` | 첫 구현 slice의 부분 Hamiltonian과 benchmark 후보 |
+| [1D multi-solver first slice](../../Projects/1D-multi-solver-demo/theory/progress/open/first-slice.md) | 첫 구현 slice의 부분 Hamiltonian과 benchmark 후보 |
 | `exact-solutions/README.md` | exact solution 문서들의 공통 사용 규칙 |
 | `exact-solutions/xx-chain.md` | XX point finite-chain reference |
-| `exact-solutions/heisenberg-chain.md` | Heisenberg thermodynamic anchor와 finite-size caveat |
-| `observables-and-plots.md` | report에서 보여줄 물리량과 plot 항목 |
+| `exact-solutions/method/bethe-ansatz.md` | Bethe ansatz method and Heisenberg thermodynamic anchor |

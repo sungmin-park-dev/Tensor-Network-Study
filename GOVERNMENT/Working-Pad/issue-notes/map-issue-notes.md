@@ -25,6 +25,7 @@ updated: 2026-06-10
 |---|---|
 | `closed/260610-government-migration-plan.md` | Initial GOVERNMENT bootstrap completed; `Projects/`, `Tutorials/`, and `src/` preserved |
 | `closed/260610-project-definition-and-projects-cleanup.md` | Project definition re-established; Projects root limited to concrete project corpus |
+| `closed/260610-models-code-space-separation.md` | Models root and code-space root established; reusable model notes separated from project-local work |
 
 ## Agent Instructions
 
