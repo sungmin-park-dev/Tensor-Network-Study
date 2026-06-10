@@ -24,67 +24,34 @@ $S_i^x=(S_i^++S_i^-)/2$ and $S_i^y=(S_i^+-S_i^-)/(2i)$.
 
 ## Solution
 
-Use the local parity $\pi_i=1-2n_i$ and the Jordan-Wigner string $P_i=\prod_{\ell<i}\pi_\ell$:
+Use the Jordan-Wigner convention from [method/jordan-wigner.md](method/jordan-wigner.md):
 
 $$
 S_i^+=c_i^\dagger P_i,
 \qquad
-S_i^-=P_i c_i.
+S_i^-=P_i c_i,
+\qquad
+P_i=\prod_{\ell<i}(1-2n_\ell).
 $$
 
-For a bulk link $0\le i\le L-2$, $P_{i+1}=P_i\pi_i$. Therefore
-
-$$
-S_i^+S_{i+1}^-
-=c_i^\dagger P_iP_{i+1}c_{i+1}
-=c_i^\dagger \pi_i c_{i+1}
-=c_i^\dagger c_{i+1},
-$$
-
-and
-
-$$
-S_i^-S_{i+1}^+
-=P_i c_i c_{i+1}^\dagger P_{i+1}
-=c_i c_{i+1}^\dagger \pi_i
-=-c_i c_{i+1}^\dagger
-=c_{i+1}^\dagger c_i.
-$$
-
-Thus the bulk exchange maps to
+For nearest-neighbor bulk links, the Jordan-Wigner strings cancel and the spin exchange becomes a
+fermion hopping term:
 
 $$
 S_i^+S_{i+1}^-+S_i^-S_{i+1}^+
-=c_i^\dagger c_{i+1}+c_{i+1}^\dagger c_i.
+=c_i^\dagger c_{i+1}+c_{i+1}^\dagger c_i,
+\qquad 0\le i\le L-2.
 $$
 
-For the PBC boundary link $(L-1,0)$, let $\Pi=\prod_{i=0}^{L-1}\pi_i=(-1)^{N_f}$. Since
-$P_{L-1}=\Pi\pi_{L-1}$ and $P_0=1$,
-
-$$
-S_{L-1}^+S_0^-
-=c_{L-1}^\dagger P_{L-1}c_0
-=c_{L-1}^\dagger\Pi\pi_{L-1}c_0
-=-\Pi c_{L-1}^\dagger \pi_{L-1}c_0
-=-\Pi c_{L-1}^\dagger c_0,
-$$
-
-and
-
-$$
-S_{L-1}^-S_0^+
-=P_{L-1}c_{L-1}c_0^\dagger
-=\Pi\pi_{L-1}c_{L-1}c_0^\dagger
-=\Pi c_{L-1}c_0^\dagger
-=-\Pi c_0^\dagger c_{L-1}.
-$$
-
-Therefore
+The only extra finite-chain issue is the PBC boundary link. With total fermion parity
+$\Pi=(-1)^{N_f}$,
 
 $$
 S_{L-1}^+S_0^-+S_{L-1}^-S_0^+
 =-\Pi\left(c_{L-1}^\dagger c_0+c_0^\dagger c_{L-1}\right).
 $$
+
+Thus OBC is a plain finite hopping chain, while PBC must be solved in fixed fermion-parity sectors.
 
 ### Open Boundary Condition
 
