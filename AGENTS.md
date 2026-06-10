@@ -8,13 +8,15 @@ This repository studies tensor-network methods through theory notes, notebooks, 
 2. `GOVERNMENT/User-Constitution/project-definition.md` for the detailed project definition.
 3. `GOVERNMENT/User-Constitution/agent-brief.md` for operating boundaries and read order.
 4. `GOVERNMENT/Working-Pad/TASK-QUEUE.md` before choosing the next task.
-5. The nearest project-local README, PLAN, or theory map before editing under `Projects/`.
+5. `Projects/map-projects.md` before adding or reorganizing project roots.
+6. The nearest project-local README, PLAN, or theory map before editing inside a project.
 
 ## Operating Rules
 
 - Treat `Projects/` as official project corpus, separate from `GOVERNMENT/`.
 - Keep root `README.md` thin. Detailed project definition belongs in `GOVERNMENT/User-Constitution/project-definition.md`.
 - Do not move or rename `Projects/`, `Tutorials/`, or `src/` without explicit user approval.
+- Do not create empty project directories as future-topic placeholders.
 - Do not absorb `Projects/1D-multi-solver-demo/theory/progress/open/` into repo-wide Working-Pad by default.
 - Treat `GOVERNMENT/User-Constitution/` and `GOVERNMENT/Court-Precedents/` as protected canon.
 - Put active repo-wide issues, migration notes, and handoffs under `GOVERNMENT/Working-Pad/`.

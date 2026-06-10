@@ -18,7 +18,7 @@ updated: 2026-06-10
 | Path | Role |
 |---|---|
 | `agent-brief.md` | Agent read order, corpus boundary, and protected-area rules |
-| `project-definition.md` | Detailed TNS project definition and corpus boundaries |
+| `project-definition.md` | Detailed TNS project definition, corpus boundaries, and Projects folder policy |
 
 ## Agent Instructions
 

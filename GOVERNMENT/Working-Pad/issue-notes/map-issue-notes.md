@@ -24,6 +24,7 @@ updated: 2026-06-10
 | Path | Result |
 |---|---|
 | `closed/260610-government-migration-plan.md` | Initial GOVERNMENT bootstrap completed; `Projects/`, `Tutorials/`, and `src/` preserved |
+| `closed/260610-project-definition-and-projects-cleanup.md` | Project definition re-established; Projects root limited to concrete project corpus |
 
 ## Agent Instructions
 

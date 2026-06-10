@@ -24,6 +24,7 @@ updated: 2026-06-10
 | `src/` | Existing core library skeleton; keep as runtime root |
 | `Tutorials/` | Study notebooks and tutorial helper code |
 | `Projects/` | Official TNS project corpus: theory notes, demos, packages, tests, notebooks |
+| `Projects/map-projects.md` | Agent navigation for current project roots |
 | `GOVERNMENT/` | Repo-local operating layer: rules, decisions, task control, issue notes |
 | `GOVERNMENT/User-Constitution/project-definition.md` | Detailed protected project definition |
 
@@ -31,4 +32,5 @@ updated: 2026-06-10
 
 - Read `GOVERNMENT/User-Constitution/agent-brief.md` before structural work.
 - Read `GOVERNMENT/Working-Pad/TASK-QUEUE.md` before choosing or continuing active tasks.
+- Read `Projects/map-projects.md` before adding or reorganizing project roots.
 - Preserve project-local file roles under `Projects/` unless a migration plan explicitly says otherwise.

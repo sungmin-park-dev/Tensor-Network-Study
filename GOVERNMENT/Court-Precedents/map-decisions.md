@@ -18,6 +18,7 @@ updated: 2026-06-10
 | Path | Status | Role |
 |---|---|---|
 | `tns-government-migration-2026-06.md` | accepted | GOVERNMENT migration boundary and T0 corpus decision |
+| `tns-project-corpus-structure-2026-06.md` | accepted | Active Projects roots and no-empty-placeholder rule |
 
 ## Agent Instructions
 
