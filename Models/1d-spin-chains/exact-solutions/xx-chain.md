@@ -156,6 +156,25 @@ $$
 up to finite-size zero-mode degeneracy. This is an exact finite-chain value, not a thermodynamic-limit
 estimate.
 
+For $J_{xy}>0$, the OBC finite sum can be written as
+
+$$
+E_0^{\mathrm{OBC}}(L)
+=
+\begin{cases}
+-\dfrac{J_{xy}}{2}
+\left[
+\csc\left(\dfrac{\pi}{2(L+1)}\right)-1
+\right],
+& L\ \mathrm{even},\\[1.2em]
+-\dfrac{J_{xy}}{2}
+\left[
+\cot\left(\dfrac{\pi}{2(L+1)}\right)-1
+\right],
+& L\ \mathrm{odd}.
+\end{cases}
+$$
+
 For PBC, the same filling rule must be applied inside each fermion-parity sector. The finite-chain
 ground-state energy is
 
@@ -168,6 +187,24 @@ $$
 
 This is also an exact finite-chain prescription: evaluate the two parity sectors and choose the lower
 energy, allowing zero-mode degeneracy when $\epsilon(k)=0$.
+
+For $J_{xy}>0$, the parity-constrained PBC result is
+
+$$
+E_0^{\mathrm{PBC}}(L)
+=
+\begin{cases}
+-J_{xy}\csc\left(\dfrac{\pi}{L}\right),
+& L\ \mathrm{even},\\[1.2em]
+-J_{xy}\cot\left(\dfrac{\pi}{L}\right)
+\cos\left(\dfrac{\pi}{2L}\right),
+& L\ \mathrm{odd}.
+\end{cases}
+$$
+
+For even $L$, the ground sector is $\lambda_{\Pi}=+1$ when $L=0\pmod 4$ and
+$\lambda_{\Pi}=-1$ when $L=2\pmod 4$. For odd $L$, the two parity sectors give the same ground-state
+energy with $N_f=(L-1)/2$ or $N_f=(L+1)/2$.
 
 For the first-slice benchmark point $L=8$, `periodic`, and $J_{xy}=1$, the two sectors give
 
