@@ -24,7 +24,8 @@ $S_i^x=(S_i^++S_i^-)/2$ and $S_i^y=(S_i^+-S_i^-)/(2i)$.
 
 ## Solution
 
-Use the Jordan-Wigner convention from [method/jordan-wigner.md](method/jordan-wigner.md):
+The XX model can be solved with the Jordan-Wigner transformation (see
+[method/jordan-wigner.md](method/jordan-wigner.md)):
 
 $$
 S_i^+=c_i^\dagger P_i,
@@ -34,8 +35,36 @@ S_i^-=P_i c_i,
 P_i=\prod_{\ell<i}(1-2n_\ell).
 $$
 
-For nearest-neighbor bulk links, the Jordan-Wigner strings cancel and the spin exchange becomes a
-fermion hopping term:
+For two sites $i<j$, define the string between the endpoints as
+
+$$
+Q_{ij}:=\prod_{\ell=i+1}^{j-1}(1-2n_\ell).
+$$
+
+Since $P_j=P_i(1-2n_i)Q_{ij}$ and $P_i^2=1$, the endpoint parity factor can be
+removed by using
+
+$$
+c_i^\dagger(1-2n_i)=c_i^\dagger,
+\qquad
+c_i(1-2n_i)=-c_i.
+$$
+
+The exchange operator becomes
+
+$$
+\begin{aligned}
+S_i^+S_j^-+S_i^-S_j^+
+&=c_i^\dagger P_iP_jc_j+P_i c_i c_j^\dagger P_j\\
+&=c_i^\dagger Q_{ij}c_j+c_j^\dagger Q_{ij}c_i.
+\end{aligned}
+$$
+
+Here $Q_{ij}$ contains only the sites between $i$ and $j$, so it commutes with the endpoint
+fermion operators.
+
+For nearest-neighbor bulk links, $Q_{i,i+1}=1$. Therefore the spin exchange becomes a fermion
+hopping term:
 
 $$
 S_i^+S_{i+1}^-+S_i^-S_{i+1}^+
