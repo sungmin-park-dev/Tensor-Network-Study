@@ -273,6 +273,17 @@ $$
 S_{\mathrm{tot}}^z=N_f-\frac{L}{2}.
 $$
 
+For a translation-invariant PBC filling state, the local average magnetization is
+
+$$
+\langle S_i^z\rangle
+=\frac{\langle S_{\mathrm{tot}}^z\rangle}{L}
+=\frac{N_f}{L}-\frac{1}{2}.
+$$
+
+Thus even-$L$ half-filled ground states have $\langle S_i^z\rangle=0$. Odd-$L$ ground sectors have
+$N_f=(L-1)/2$ or $N_f=(L+1)/2$, giving $\langle S_i^z\rangle=-1/(2L)$ or $+1/(2L)$, respectively.
+
 ## References
 
 - [method/jordan-wigner.md](method/jordan-wigner.md)
