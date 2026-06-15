@@ -41,6 +41,17 @@ These guidelines apply to theory notes that may later be promoted to LSWT or to 
 - If a model is also known as a point or limit of a larger family, mention that in the introduction,
   not as the primary definition.
 
+## Derivation Completeness
+
+- Show the intermediate algebra. State every operator identity (commutator, anticommutator, parity
+  relation) at the point of use; do not jump from setup to result.
+- Derive the general case once, then specialize to OBC and PBC. Do not re-derive the bulk for each
+  boundary condition.
+- A reader should be able to reconstruct each displayed line without an external calculation.
+  Conciseness means removing narration, not removing steps.
+- When a derivation step belongs to a reusable transformation, place it in the corresponding method
+  note and reference it, rather than skipping it.
+
 ## Exact-Solution Note Structure
 
 The current draft structure for exact-solution notes is:
@@ -60,6 +71,20 @@ Solution
   Periodic Boundary Condition
 ```
 
+## Physical Quantities For Code Comparison
+
+The purpose of a model note is to let later code compute a quantity and plot it directly against the
+theory value. Each physical quantity must therefore land in a computable form.
+
+- End each quantity in a closed form, an explicit finite sum, or an explicit construction (for
+  example, a correlation matrix together with the function of it that yields the quantity). Do not
+  leave a quantity as a pointer such as "obtained from Wick contractions".
+- Tie every observable to the diagonalization output (one-particle eigenvectors, Bogoliubov
+  coefficients $u_k,v_k$, the covariance matrix), so the theory and the code evaluate the same object.
+- State the boundary condition and parity sector for every finite-size formula.
+- Prefer project notation ($L$, $i=0,1,\ldots,L-1$, $S^a=\sigma^a/2$) so that theory and code share
+  symbols.
+
 ## Method And Model Separation
 
 - Method documents explain general transformations, assumptions, and caveats.
@@ -76,7 +101,8 @@ Solution
 - Use $N_f$ for fermion number.
 - Use $\Pi$ for the total fermion-parity operator.
 - Use $\lambda_{\Pi}$ for a total parity eigenvalue.
-- Use $\pi_i=1-2n_i$ for local fermion parity when local parity must be named.
+- Use $p_i=1-2n_i$ for local fermion parity when local parity must be named. Do not write it as
+  $\pi_i$, which collides with the constant $\pi$ in expressions such as $e^{i\pi n_i}$.
 
 ## Review Discipline
 
@@ -95,3 +121,5 @@ Solution
 - Using project-specific benchmark language as if it were part of the model definition.
 - Mixing method-level claims with model-specific equations.
 - Adding implementation tasks or future plans to theory exposition.
+- Stating a result without the reduction that produces it, or jumping from setup to answer.
+- Leaving a physical quantity as a pointer instead of an explicit computable expression.
