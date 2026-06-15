@@ -5,7 +5,7 @@ section: working-pad
 status: in-review
 last-edited-by: codex
 created: 2026-06-10
-updated: 2026-06-10
+updated: 2026-06-14
 ---
 
 # Task Queue
@@ -16,7 +16,8 @@ This file is the repo-wide active work index. Project-local progress remains in 
 
 | Priority | Type | Task | Status | File |
 |---|---|---|---|---|
-| - | - | No active repo-wide task currently registered | - | - |
+| P1 | discussion | System definition design for method-consumption probe | draft | `issue-notes/open/260613-system-definition-design.md` |
+| P2 | review | Physics review of exact-solution theory notes (tfim, BdG) | draft | `issue-notes/open/260614-exact-solution-physics-review.md` |
 
 ## Update Rules
 
