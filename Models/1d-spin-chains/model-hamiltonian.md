@@ -1,49 +1,50 @@
 # 1D Spin-Chain Model Hamiltonian
 
-상태: 1차 이론 명세  
-범위: TNS 프로젝트에서 재사용할 1D spin-1/2 Hamiltonian family
+Status: first theory specification  
+Scope: the reusable 1D spin-1/2 Hamiltonian family for the TNS project
 
-## 1. 도입
+## 1. Introduction
 
-- 이 문서는 TNS 프로젝트에서 재사용할 1D spin-1/2 Hamiltonian family를 정의한다.
-- Geometry symbol, model parameter, code field 이름의 표준 정의는
-  [parameters-and-symbols.md](parameters-and-symbols.md)에서 관리한다.
-- Indexing, boundary condition, operator normalization, sign convention은
-  [conventions.md](conventions.md)를 따른다.
-- 본 문서는 위 두 문서의 정의를 전제로 하여 Hamiltonian의 항별 구조와 first-slice 부분계를
-  명시한다.
-- 따라서 이 문서에서는 기호와 convention을 반복 설명하지 않고, Hamiltonian 자체의 수학적
-  구조에 집중한다.
+This document defines the 1D spin-1/2 Hamiltonian family reused across the TNS project. The standard
+definitions of the geometry symbols, model parameters, and code field names are managed in
+[parameters-and-symbols.md](parameters-and-symbols.md), and the indexing, boundary condition,
+operator normalization, and sign convention follow [conventions.md](conventions.md). Taking those two
+documents as given, this note specifies the term-by-term structure of the Hamiltonian and the
+first-slice subsystem. It therefore does not repeat the symbols and conventions, and concentrates on
+the mathematical structure of the Hamiltonian itself.
 
-## 2. 모델 해밀토니안
+## 2. Model Hamiltonian
 
-본 프로젝트에서 고려하는 Hamiltonian는 XXZ exchange, Zeeman field, cluster interaction의 항으로 정의된다.
+The Hamiltonian considered in this project is defined by an XXZ exchange term, a Zeeman field term,
+and a cluster interaction term.
+
 $$
 H (\mathbf{J}, \mathbf{h}, K; {\mathcal{G}} )= H_{\mathrm{XXZ}} (\mathbf{J}; {\mathcal{G}}) + H_{\mathrm{Zeeman}} (\mathbf{h}; {\mathcal{G}})  + H_{\mathrm{cluster}} (K; {\mathcal{G}}).
 $$
-여기서 ${\mathcal{G}}$는 모델의 geometry를 나타내고, Section 2.1에서 정의한다. 
-해밀토니안의 항별 세부적인 정의와 파라미터는 Section 2.2에서 정의한다. 
 
-### 2.1 격자 구조 (${\mathcal{G}}$)
+Here $\mathcal{G}$ denotes the model geometry, defined in Section 2.1. The term-by-term definitions
+and parameters of the Hamiltonian are given in Section 2.2.
 
-Hamiltonian은 먼저 고정된 system geometry 위에서 정의한다. Geometry는 $\mathcal{G}$로 표시한다.
-이 기호는 model parameter와 구분되는 물리 시스템의 기하학적 specification을 가리킨다.
+### 2.1 Lattice Geometry (${\mathcal{G}}$)
 
-First slice의 geometry는 길이 $L$의 1D chain이다. Site index는 $i=0,1,\ldots,L-1$로 둔다.
-`open` boundary condition에서는 nearest-neighbor bond가 $(i,i+1)$, $i=0,\ldots,L-2$로 주어진다.
-`periodic` boundary condition에서는 여기에 boundary bond $(L-1,0)$를 추가한다.
+The Hamiltonian is first defined on a fixed system geometry, denoted $\mathcal{G}$. This symbol refers
+to the geometric specification of the physical system, as distinct from the model parameters.
 
-이 문서의 나머지 부분에서는 geometry가 문맥상 고정되어 있다고 보고 $\mathcal{G}$ 아래첨자를
-생략한다. 따라서 $\sum_{\langle i,j\rangle}$는 현재 선택된 1D chain geometry의 nearest-neighbor
-bond에 대한 합을 의미한다.
+The first-slice geometry is a 1D chain of length $L$. The site indices are $i=0,1,\ldots,L-1$. Under
+`open` boundary conditions, the nearest-neighbor bonds are $(i,i+1)$ for $i=0,\ldots,L-2$. Under
+`periodic` boundary conditions, the boundary bond $(L-1,0)$ is added to these.
 
-### 2.2 해밀토니안($H$)과 상호작용 항
+In the rest of this document the geometry is taken to be fixed by context, and the $\mathcal{G}$
+subscript is omitted. Thus $\sum_{\langle i,j\rangle}$ means the sum over the nearest-neighbor bonds
+of the currently chosen 1D chain geometry.
 
-아래의 각 항은 Section 2.1의 site indexing과 boundary convention을 공유한다.
+### 2.2 The Hamiltonian ($H$) And Its Interaction Terms
+
+Each term below shares the site indexing and boundary convention of Section 2.1.
 
 #### 2.2.1 XXZ Exchange Term
 
-XXZ interaction은 다음과 같이 정의한다.
+The XXZ interaction is defined as
 
 $$
 H_{\mathrm{XXZ}}(J_{xy},J_z)
@@ -54,12 +55,12 @@ J_{xy}\left(S_i^x S_j^x + S_i^y S_j^y\right)
 \right].
 $$
 
-여기서 $\langle i,j\rangle$는 선택된 geometry의 nearest-neighbor bond를 의미한다.
-Anisotropy는 $\Delta=J_z/J_{xy}$로 정의한다.
+Here $\langle i,j\rangle$ denotes the nearest-neighbor bonds of the chosen geometry. The anisotropy is
+defined as $\Delta=J_z/J_{xy}$.
 
 #### 2.2.2 Zeeman Term
 
-Zeeman field는 longitudinal field $h_z$와 transverse field $h_x$를 모두 허용한다.
+The Zeeman field allows both a longitudinal field $h_z$ and a transverse field $h_x$.
 
 $$
 H_{\mathrm{Zeeman}}(h_z,h_x)
@@ -69,50 +70,49 @@ $$
 
 #### 2.2.3 Cluster Term
 
-Cluster interaction은 spin operator의 세 site 곱으로 둔다.
+The cluster interaction is taken as a three-site product of spin operators.
 
 $$
 H_{\mathrm{cluster}}(K)
 = -K \sum_i S_{i-1}^{x} S_i^{z} S_{i+1}^{x}.
 $$
 
-이 cluster term은 1D chain term으로 해석한다. Periodic boundary condition에서는 site index를
-modulo $L$로 해석한다. Open boundary condition에서 cluster term을 어떻게 truncate할지는
-cluster-term slice에서 별도로 확정한다.
+This cluster term is interpreted as a 1D chain term. Under periodic boundary conditions, the site
+indices are read modulo $L$. How the cluster term is truncated under open boundary conditions is fixed
+separately in the cluster-term slice.
 
 ## 3. Exact Solution
 
-일반적인 파라미터 영역에서는 정확해의 존재(exact solutions) 또는 적분가능성(integrability)이
-기대되지 않는다. 그러나 특정 limit에서는 Jordan-Wigner transformation 또는 Bethe ansatz를 통해
-exact reference를 얻을 수 있다.
-참조 노트 파일은 `exact-solutions/` 아래에서 관리한다.
+For generic parameter ranges, neither an exact solution nor integrability is expected. In specific
+limits, however, an exact reference can be obtained through the Jordan-Wigner transformation or the
+Bethe ansatz. The reference notes are managed under `exact-solutions/`.
 
 | Limit | Condition | Method | Reference note |
 |---|---|---|---|
-| XXZ chain | $K=0$, $h_x=0$ | Bethe ansatz | `exact-solutions/method/bethe-ansatz.md` |
-| XX point | $K=0$, $h_x=h_z=0$, $J_z=0$ | Jordan-Wigner / free fermion | `xx-chain.md` |
-| Heisenberg AFM point | $K=0$, $h_x=h_z=0$, $J_{xy}=J_z=1$ | Bethe ansatz | `exact-solutions/method/bethe-ansatz.md` |
-| TFIM limit | $K=0$, $J_{xy}=0$, $J_z\ne0$, $h_x\ne0$ | Jordan-Wigner | `tfim-chain.md` |
+| XXZ chain | $K=0$, $h_x=0$ | Bethe ansatz | `exact-solutions/xxz-chain.md` |
+| XX point | $K=0$, $h_x=h_z=0$, $J_z=0$ | Jordan-Wigner / free fermion | `exact-solutions/xx-chain.md` |
+| Heisenberg AFM point | $K=0$, $h_x=h_z=0$, $J_{xy}=J_z=1$ | Bethe ansatz | `exact-solutions/xxz-chain.md` |
+| TFIM limit | $K=0$, $J_{xy}=0$, $J_z\ne0$, $h_x\ne0$ | Jordan-Wigner | `exact-solutions/tfim-chain.md` |
 
-
-
-Exact solution의 세부 derivation과 finite-size caveat는 `exact-solutions/`에서 관리한다.
-프로젝트별 benchmark 사용 방식은 해당 project의 progress나 plan에서 관리한다. 예:
+The detailed derivations and finite-size caveats of the exact solutions are managed under
+`exact-solutions/`. How each project uses these benchmarks is managed in that project's progress or
+plan, for example
 [1D multi-solver first slice](../../Projects/1D-multi-solver-demo/progress/open/first-slice.md).
 
-## 4. 모델 해밀토니안의 물리적 특성
+## 4. Physical Properties Of The Model Hamiltonian
 
-이 섹션은 추후 작성한다.
+This section is written later.
 
-## 5. 참고 문서
+## 5. References
 
-이 문서는 다음 theory 문서와 함께 읽는다.
+This document is read together with the following theory documents.
 
 | Document | Role |
 |---|---|
-| `parameters-and-symbols.md` | geometry symbol, model parameter, code field 이름의 source of truth |
+| `parameters-and-symbols.md` | source of truth for geometry symbols, model parameters, and code field names |
 | `conventions.md` | indexing, boundary condition, operator normalization, sign convention |
-| [1D multi-solver first slice](../../Projects/1D-multi-solver-demo/progress/open/first-slice.md) | 첫 구현 slice의 부분 Hamiltonian과 benchmark 후보 |
-| `exact-solutions/README.md` | exact solution 문서들의 공통 사용 규칙 |
+| [1D multi-solver first slice](../../Projects/1D-multi-solver-demo/progress/open/first-slice.md) | first-slice partial Hamiltonian and benchmark candidates |
+| `exact-solutions/README.md` | shared usage rules for the exact-solution notes |
 | `exact-solutions/xx-chain.md` | XX point finite-chain reference |
-| `exact-solutions/method/bethe-ansatz.md` | Bethe ansatz method and Heisenberg thermodynamic anchor |
+| `exact-solutions/xxz-chain.md` | XXZ chain Bethe ansatz reference |
+| `exact-solutions/method/bethe-ansatz.md` | coordinate Bethe ansatz method |

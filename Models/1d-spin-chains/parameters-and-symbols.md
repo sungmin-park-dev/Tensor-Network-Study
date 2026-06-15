@@ -1,14 +1,15 @@
 # Parameters And Symbols
 
-상태: 1차 이론 명세  
-범위: TNS 1D spin-chain model notes and projects의 system geometry symbol, model parameter, derived quantity, code field naming
+Status: first theory specification  
+Scope: the system geometry symbols, model parameters, derived quantities, and code field naming of
+the TNS 1D spin-chain model notes and projects
 
 ## 1. Purpose
 
-이 문서는 TNS의 1D spin-chain model notes와 관련 project에서 반복적으로 사용하는 기호와 코드
-field 이름의 대응을 관리한다. 다른 이론 문서는 이 문서에서 정의한 기호를 참조한다. 이 문서에서는
-system geometry와 model parameter를 명시적으로 구분한다. $L$과 $b$는 물리 시스템의 기하학적
-specification이며, Hamiltonian model parameter가 아니다.
+This document manages the correspondence between the symbols and the code field names used repeatedly
+in the TNS 1D spin-chain model notes and the related projects. Other theory documents refer to the
+symbols defined here. This document explicitly separates system geometry from model parameters: $L$
+and $b$ are the geometric specification of the physical system, not Hamiltonian model parameters.
 
 ## 2. System Geometry Symbols
 

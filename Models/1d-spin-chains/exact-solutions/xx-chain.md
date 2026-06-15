@@ -24,47 +24,87 @@ $S_i^x=(S_i^++S_i^-)/2$ and $S_i^y=(S_i^+-S_i^-)/(2i)$.
 
 ## Solution
 
-The XX model can be solved with the Jordan-Wigner transformation (see
-[method/jordan-wigner.md](method/jordan-wigner.md)):
+The XX model maps to a free-fermion hopping problem under the Jordan-Wigner transformation. We first
+derive the fermionic Hamiltonians and then diagonalize them in the open and periodic boundary cases.
+
+### Fermionic Hamiltonian
+
+The Jordan-Wigner transformation turns the spin-flip exchange terms into quadratic fermion hopping
+terms. The only boundary-dependent step is the parity factor on the periodic boundary link.
+
+#### Jordan-Wigner Setup
+
+We fix the Jordan-Wigner convention and derive the string-reduction formula for a general ordered
+pair $i<j$. The convention follows [method/jordan-wigner.md](method/jordan-wigner.md):
 
 $$
 S_i^+=c_i^\dagger P_i,
 \qquad
 S_i^-=P_i c_i,
 \qquad
-P_i=\prod_{\ell<i}(1-2n_\ell).
-$$
-
-For two sites $i<j$, define the string between the endpoints as
-
-$$
-Q_{ij}:=\prod_{\ell=i+1}^{j-1}(1-2n_\ell).
-$$
-
-Since $P_j=P_i(1-2n_i)Q_{ij}$ and $P_i^2=1$, the endpoint parity factor can be
-removed by using
-
-$$
-c_i^\dagger(1-2n_i)=c_i^\dagger,
+P_i=\prod_{\ell<i}p_\ell,
 \qquad
-c_i(1-2n_i)=-c_i.
+p_\ell=1-2n_\ell.
 $$
 
-The exchange operator becomes
+The local parity operator satisfies
 
 $$
 \begin{aligned}
-S_i^+S_j^-+S_i^-S_j^+
-&=c_i^\dagger P_iP_jc_j+P_i c_i c_j^\dagger P_j\\
-&=c_i^\dagger Q_{ij}c_j+c_j^\dagger Q_{ij}c_i.
+p_i c_i&=c_i,&
+c_i p_i&=-c_i,\\
+p_i c_i^\dagger&=-c_i^\dagger,&
+c_i^\dagger p_i&=c_i^\dagger,
 \end{aligned}
 $$
 
-Here $Q_{ij}$ contains only the sites between $i$ and $j$, so it commutes with the endpoint
-fermion operators.
+and it commutes with fermion operators on all other sites. Thus $P_i$ commutes with
+$c_k,c_k^\dagger$ for $k\ge i$, while $P_j$ anticommutes with $c_i,c_i^\dagger$ when $i<j$.
 
-For nearest-neighbor bulk links, $Q_{i,i+1}=1$. Therefore the spin exchange becomes a fermion
-hopping term:
+For two sites $i<j$, the spin-flip exchange operator becomes
+
+$$
+S_i^+S_j^-+S_i^-S_j^+
+=c_i^\dagger Q_{ij}c_j+c_j^\dagger Q_{ij}c_i,
+$$
+
+where
+
+$$
+Q_{ij}:=\prod_{\ell=i+1}^{j-1}p_\ell.
+$$
+
+To see this, use $P_j=P_i p_i Q_{ij}$ and $P_i^2=1$:
+
+$$
+P_iP_j=p_iQ_{ij}.
+$$
+
+The two exchange terms are
+
+$$
+\begin{aligned}
+S_i^+S_j^-
+&=c_i^\dagger P_iP_j c_j\\
+&=c_i^\dagger p_i Q_{ij} c_j\\
+&=c_i^\dagger Q_{ij} c_j,
+\end{aligned}
+$$
+
+and
+
+$$
+S_i^-S_j^+=P_i c_i c_j^\dagger P_j=c_i c_j^\dagger p_i Q_{ij}=-c_i c_j^\dagger Q_{ij}=c_j^\dagger Q_{ij}c_i.
+$$
+
+In the second term, only $P_i$ is moved through the endpoint fermions; $P_j$ is not moved through
+$c_i$. After substituting $P_iP_j=p_iQ_{ij}$, the identities $c_ip_i=-c_i$ and
+$c_i c_j^\dagger=-c_j^\dagger c_i$ give the compact line above.
+
+#### OBC Hamiltonian
+
+For OBC, every bond is a nearest-neighbor bulk link in the Jordan-Wigner ordering, so the general
+formula reduces to a local hopping term. Since $Q_{i,i+1}=1$,
 
 $$
 S_i^+S_{i+1}^-+S_i^-S_{i+1}^+
@@ -72,49 +112,7 @@ S_i^+S_{i+1}^-+S_i^-S_{i+1}^+
 \qquad 0\le i\le L-2.
 $$
 
-The only extra finite-chain issue is the PBC boundary link. Let
-$\pi_i=1-2n_i$ and define the total fermion parity as
-
-$$
-\Pi=\prod_{i=0}^{L-1}\pi_i=(-1)^{N_f}.
-$$
-
-Because $P_0=1$ and $\pi_{L-1}^2=1$, the boundary string is
-
-$$
-P_{L-1}=\prod_{\ell=0}^{L-2}\pi_\ell=\Pi\pi_{L-1}.
-$$
-
-Using $c_{L-1}^\dagger\Pi=-\Pi c_{L-1}^\dagger$,
-$c_{L-1}^\dagger\pi_{L-1}=c_{L-1}^\dagger$,
-$\pi_{L-1}c_{L-1}=c_{L-1}$, and $c_{L-1}c_0^\dagger=-c_0^\dagger c_{L-1}$,
-the two boundary exchange terms become
-
-$$
-\begin{aligned}
-S_{L-1}^+S_0^-
-&=c_{L-1}^\dagger P_{L-1}c_0
-=c_{L-1}^\dagger\Pi\pi_{L-1}c_0
-=-\Pi c_{L-1}^\dagger c_0,\\
-S_{L-1}^-S_0^+
-&=P_{L-1}c_{L-1}c_0^\dagger
-=\Pi\pi_{L-1}c_{L-1}c_0^\dagger
-=-\Pi c_0^\dagger c_{L-1}.
-\end{aligned}
-$$
-
-Therefore
-
-$$
-S_{L-1}^+S_0^-+S_{L-1}^-S_0^+
-=-\Pi\left(c_{L-1}^\dagger c_0+c_0^\dagger c_{L-1}\right).
-$$
-
-Thus OBC is a plain finite hopping chain, while PBC must be solved in fixed fermion-parity sectors.
-
-### Open Boundary Condition
-
-For OBC, no boundary hopping term crosses the Jordan-Wigner ordering cut. The fermion Hamiltonian is
+Therefore the OBC Hamiltonian is
 
 $$
 H_{\mathrm{XX}}^{\mathrm{OBC}}
@@ -122,20 +120,67 @@ H_{\mathrm{XX}}^{\mathrm{OBC}}
 \left(c_i^\dagger c_{i+1}+c_{i+1}^\dagger c_i\right).
 $$
 
-For OBC, the one-particle energies are
+#### PBC Hamiltonian
+
+For PBC, the bulk links are unchanged, but the boundary link acquires a fermion-parity factor:
 
 $$
-\epsilon_m=J_{xy}\cos\left(\frac{\pi m}{L+1}\right),
-\qquad m=1,2,\ldots,L.
+S_{L-1}^+S_0^-+S_{L-1}^-S_0^+
+=-\Pi\left(c_{L-1}^\dagger c_0+c_0^\dagger c_{L-1}\right),
 $$
 
-### Periodic Boundary Condition
+where
 
-For PBC, the bulk hopping terms are unchanged, while the boundary hopping term is the
-parity-sector-dependent term derived above.
+$$
+\Pi=\prod_{i=0}^{L-1}p_i=(-1)^{N_f}.
+$$
 
-In a fixed parity sector $\Pi=\lambda_{\Pi}$ with $\lambda_{\Pi}=\pm1$, the fermionic boundary
-condition is
+The boundary link is $(L-1,0)$. Since $P_0=1$, only the operator at site $L-1$ carries a
+Jordan-Wigner string:
+
+$$
+P_{L-1}=\prod_{\ell=0}^{L-2}p_\ell.
+$$
+
+Multiplying by $p_{L-1}^2=1$ rewrites this string in terms of the total fermion parity:
+
+$$
+P_{L-1}=\left(\prod_{\ell=0}^{L-1}p_\ell\right)p_{L-1}=\Pi p_{L-1}.
+$$
+
+The two boundary exchange terms are
+
+$$
+\begin{aligned}
+S_{L-1}^+S_0^-
+&=c_{L-1}^\dagger P_{L-1}c_0
+=c_{L-1}^\dagger\Pi p_{L-1}c_0
+=-\Pi c_{L-1}^\dagger c_0,\\
+S_{L-1}^-S_0^+
+&=P_{L-1}c_{L-1}c_0^\dagger
+=\Pi p_{L-1}c_{L-1}c_0^\dagger
+=-\Pi c_0^\dagger c_{L-1}.
+\end{aligned}
+$$
+
+Here $c_{L-1}^\dagger\Pi=-\Pi c_{L-1}^\dagger$,
+$c_{L-1}^\dagger p_{L-1}=c_{L-1}^\dagger$,
+$p_{L-1}c_{L-1}=c_{L-1}$, and $c_{L-1}c_0^\dagger=-c_0^\dagger c_{L-1}$.
+
+This parity-dependent boundary term means PBC must be solved in fixed fermion-parity sectors. In a
+sector $\Pi=\lambda_{\Pi}$, the Hamiltonian is
+
+$$
+H_{\mathrm{XX}}^{\mathrm{PBC}}(\lambda_{\Pi})
+=\frac{J_{xy}}{2}
+\left[
+\sum_{i=0}^{L-2}
+\left(c_i^\dagger c_{i+1}+c_{i+1}^\dagger c_i\right)
+-\lambda_{\Pi}\left(c_{L-1}^\dagger c_0+c_0^\dagger c_{L-1}\right)
+\right].
+$$
+
+Equivalently, the fermions satisfy the boundary condition
 
 $$
 c_L=-\lambda_{\Pi}\,c_0.
@@ -143,7 +188,25 @@ $$
 
 Here $c_L$ is a boundary-condition shorthand, not an additional physical site.
 
-The corresponding momenta are
+### Diagonalization
+
+The fermionic Hamiltonians above are quadratic hopping problems. We use
+[method/free-fermion-diagonalization.md](method/free-fermion-diagonalization.md) with hopping
+amplitude $t=J_{xy}/2$.
+
+#### OBC Diagonalization
+
+For OBC, the standing-wave one-particle energies are
+
+$$
+\epsilon_m=J_{xy}\cos\left(\frac{\pi m}{L+1}\right),
+\qquad m=1,2,\ldots,L.
+$$
+
+#### PBC Diagonalization
+
+For PBC, the fixed-sector boundary condition $c_L=-\lambda_{\Pi}c_0$ fixes the allowed momentum
+grid:
 
 $$
 k_m=
@@ -155,35 +218,56 @@ k_m=
 $$
 
 Let $K_{\lambda_{\Pi}}$ denote the momentum grid associated with the parity sector
-$\lambda_{\Pi}$.
-
-The one-particle energies are
+$\lambda_{\Pi}$. The one-particle energies are
 
 $$
 \epsilon(k)=J_{xy}\cos k.
 $$
 
+### Bridge to Physical Quantities
+
+At this point, the spin problem has been reduced to one-particle fermionic levels with specified
+boundary sectors. The next section fills these levels to compute many-body energies and spin
+expectation values.
+
 ## Physical Quantities
 
 ### Many-Body Energy From Filled Levels
 
-The many-body energy is obtained by filling one-particle levels.
+The many-body energy is obtained by filling one-particle fermion levels. For OBC,
 
-For OBC, the occupation variables are $n_m\in\{0,1\}$ for the standing-wave modes
-$m=1,2,\ldots,L$. For PBC, the occupation variables are $n_k\in\{0,1\}$ on the momentum grid
-$K_{\lambda_{\Pi}}$ of a fixed parity sector.
+$$
+E[\{n_m\}]
+=\sum_{m=1}^{L}n_m\,J_{xy}\cos\left(\frac{\pi m}{L+1}\right),
+\qquad n_m\in\{0,1\}.
+$$
+
+For PBC, the filling must be evaluated inside a fixed fermion-parity sector:
+
+$$
+E[\{n_k\};\lambda_{\Pi}]
+=\sum_{k\in K_{\lambda_{\Pi}}}n_k\,J_{xy}\cos k,
+\qquad
+(-1)^{\sum_k n_k}=\lambda_{\Pi}.
+$$
 
 ### Ground-State Energy
 
-For OBC, the finite-$L$ ground-state energy is the finite sum over occupied negative one-particle
-levels:
+The finite-chain ground-state energy is the minimum over the allowed fillings:
 
 $$
-E_0^{\mathrm{OBC}}=\sum_{\epsilon_m<0}\epsilon_m,
+E_0^{\mathrm{OBC}}
+=\min_{\{n_m\}}\sum_{m=1}^{L}n_m\,J_{xy}\cos\left(\frac{\pi m}{L+1}\right),
 $$
 
-up to finite-size zero-mode degeneracy. This is an exact finite-chain value, not a thermodynamic-limit
-estimate.
+and
+
+$$
+E_0^{\mathrm{PBC}}
+=\min_{\lambda_{\Pi}=\pm1}
+\min_{\{n_k\}:\,(-1)^{\sum_k n_k}=\lambda_{\Pi}}
+\sum_{k\in K_{\lambda_{\Pi}}}n_k\,J_{xy}\cos k.
+$$
 
 For $J_{xy}>0$, the OBC finite sum can be written as
 
@@ -204,20 +288,7 @@ E_0^{\mathrm{OBC}}(L)
 \end{cases}
 $$
 
-For PBC, the same filling rule must be applied inside each fermion-parity sector. The finite-chain
-ground-state energy is
-
-$$
-E_0^{\mathrm{PBC}}
-=\min_{\lambda_{\Pi}=\pm1}
-\min_{\{n_k\}:\,(-1)^{\sum_k n_k}=\lambda_{\Pi}}
-\sum_{k\in K_{\lambda_{\Pi}}} n_k\,J_{xy}\cos k.
-$$
-
-This is also an exact finite-chain prescription: evaluate the two parity sectors and choose the lower
-energy, allowing zero-mode degeneracy when $\epsilon(k)=0$.
-
-For $J_{xy}>0$, the parity-constrained PBC result is
+For PBC and $J_{xy}>0$, the parity-constrained result is
 
 $$
 E_0^{\mathrm{PBC}}(L)
@@ -231,31 +302,17 @@ E_0^{\mathrm{PBC}}(L)
 \end{cases}
 $$
 
-For even $L$, the ground sector is $\lambda_{\Pi}=+1$ when $L=0\pmod 4$ and
-$\lambda_{\Pi}=-1$ when $L=2\pmod 4$. For odd $L$, the two parity sectors give the same ground-state
-energy with $N_f=(L-1)/2$ or $N_f=(L+1)/2$.
+### Ground-State Wavefunction
 
-For the first-slice benchmark point $L=8$, `periodic`, and $J_{xy}=1$, the two sectors give
+Let $a_\alpha$ denote the diagonal fermion modes. Each many-body eigenstate is a Slater determinant,
 
 $$
-E_{\lambda_{\Pi}=-1}=-1-\sqrt{2},
+|\{n_\alpha\}\rangle
+=\prod_{\alpha:\,n_\alpha=1}a_\alpha^\dagger|0\rangle.
 $$
 
-from the occupied momenta $k=3\pi/4,\pi,5\pi/4$, and
-
-$$
-E_{\lambda_{\Pi}=+1}
-=2\cos\frac{5\pi}{8}+2\cos\frac{7\pi}{8}
-=-\sqrt{2+\sqrt{2}}-\sqrt{2-\sqrt{2}}.
-$$
-
-Therefore the exact finite-chain PBC ground-state energy for this benchmark is
-
-$$
-E_0^{\mathrm{PBC}}(L=8,J_{xy}=1)
-=-\sqrt{2+\sqrt{2}}-\sqrt{2-\sqrt{2}}
-\approx -2.6131259298.
-$$
+The ground state is the allowed filling that minimizes the energy in the boundary sector under
+consideration.
 
 ### Energy Density
 
@@ -273,7 +330,14 @@ $$
 S_{\mathrm{tot}}^z=N_f-\frac{L}{2}.
 $$
 
-For a translation-invariant PBC filling state, the local average magnetization is
+The local magnetization is
+
+$$
+\langle S_i^z\rangle
+=\langle n_i\rangle-\frac{1}{2}.
+$$
+
+For a translation-invariant PBC filling state, this reduces to
 
 $$
 \langle S_i^z\rangle
@@ -281,9 +345,73 @@ $$
 =\frac{N_f}{L}-\frac{1}{2}.
 $$
 
-Thus even-$L$ half-filled ground states have $\langle S_i^z\rangle=0$. Odd-$L$ ground sectors have
-$N_f=(L-1)/2$ or $N_f=(L+1)/2$, giving $\langle S_i^z\rangle=-1/(2L)$ or $+1/(2L)$, respectively.
+Number-conserving eigenstates also satisfy
+
+$$
+\langle S_i^x\rangle=\langle S_i^y\rangle=0.
+$$
+
+### Two-Point Correlators
+
+The fermion one-body correlator is
+
+$$
+G_{ij}:=\langle c_i^\dagger c_j\rangle.
+$$
+
+For an OBC filling,
+
+$$
+G_{ij}
+=\sum_{m:\,n_m=1}
+\frac{2}{L+1}
+\sin\left(\frac{\pi m(i+1)}{L+1}\right)
+\sin\left(\frac{\pi m(j+1)}{L+1}\right).
+$$
+
+For a PBC filling,
+
+$$
+G_{ij}
+=\frac{1}{L}\sum_{k:\,n_k=1}e^{ik(j-i)}.
+$$
+
+The longitudinal spin correlator follows directly from Wick's theorem. For $i\ne j$,
+
+$$
+\langle S_i^z\rangle=G_{ii}-\frac{1}{2},
+\qquad
+\langle S_i^zS_j^z\rangle
+=\left(G_{ii}-\frac{1}{2}\right)
+\left(G_{jj}-\frac{1}{2}\right)
+-G_{ij}G_{ji}.
+$$
+
+Transverse correlators contain the Jordan-Wigner string and are computed as Gaussian Wick
+determinants or Pfaffians.
+
+### Entanglement Entropy
+
+For a subsystem $A$, let $C_A$ be the restriction of $G_{ij}$ to sites in $A$. If $\nu_a$ are the
+eigenvalues of $C_A$, the von Neumann entanglement entropy is
+
+$$
+S_A
+=-\sum_a\left[
+\nu_a\log\nu_a+(1-\nu_a)\log(1-\nu_a)
+\right].
+$$
+
+### Correlation Length
+
+The zero-field XX chain is gapless in the thermodynamic ground state, so its spin correlations are
+algebraic and the correlation length is
+
+$$
+\xi=\infty.
+$$
 
 ## References
 
+- [method/free-fermion-diagonalization.md](method/free-fermion-diagonalization.md)
 - [method/jordan-wigner.md](method/jordan-wigner.md)

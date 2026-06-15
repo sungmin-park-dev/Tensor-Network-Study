@@ -1,61 +1,63 @@
 # Conventions
 
-상태: 1차 이론 명세  
-범위: TNS 1D spin-chain model notes and projects의 문서, 코드, 리포트가 공유해야 하는 해석 규약
+Status: first theory specification  
+Scope: the interpretation rules shared by the documents, code, and reports of the TNS 1D spin-chain
+model notes and projects
 
 ## 1. Purpose
 
-이 문서는 TNS의 1D spin-chain model notes와 관련 project에서 사용하는 indexing, boundary
-condition, operator normalization, sign convention, numerical comparison convention을 고정한다.
-기호와 코드 field 이름은 [parameters-and-symbols.md](parameters-and-symbols.md)에서 관리하며,
-이 문서는 그 기호들이 어떤 물리적 의미와 계산 규칙을 갖는지 정의한다.
+This document fixes the indexing, boundary condition, operator normalization, sign convention, and
+numerical comparison convention used by the TNS 1D spin-chain model notes and the related projects.
+Symbols and code field names are managed in [parameters-and-symbols.md](parameters-and-symbols.md);
+this document defines the physical meaning and computational rules attached to those symbols.
 
-이 convention은 [model-hamiltonian.md](model-hamiltonian.md)의 Hamiltonian 정의에 적용된다.
-특히 geometry symbol $\mathcal{G}$, chain length $L$, boundary condition $b$, model parameters
-$J_{xy}$, $J_z$, $h_z$, $h_x$, $K$, $\mathcal{C}_{\mathrm{cl}}$, 그리고 energy symbols $E_0$,
-$e_0$의 정의는 [parameters-and-symbols.md](parameters-and-symbols.md)를 따른다.
+These conventions apply to the Hamiltonian definition in
+[model-hamiltonian.md](model-hamiltonian.md). In particular, the definitions of the geometry symbol
+$\mathcal{G}$, chain length $L$, boundary condition $b$, model parameters $J_{xy}$, $J_z$, $h_z$,
+$h_x$, $K$, $\mathcal{C}_{\mathrm{cl}}$, and the energy symbols $E_0$ and $e_0$ follow
+[parameters-and-symbols.md](parameters-and-symbols.md).
 
 ## 2. Indexing And Bond Order
 
-Site index는 0-based convention을 따른다. 길이 $L$의 chain에서 site는 $i=0,1,\ldots,L-1$로
-label한다.
+Site indices follow a 0-based convention. On a chain of length $L$, the sites are labeled
+$i=0,1,\ldots,L-1$.
 
-Nearest-neighbor bond list는 deterministic order를 가진다. Open boundary condition에서는
-$(0,1),(1,2),\ldots,(L-2,L-1)$ 순서로 둔다. Periodic boundary condition에서는 마지막에
-boundary bond $(L-1,0)$를 추가한다. 이 순서는 ED matrix construction, geometry diagram,
-report table에서 동일해야 한다.
+The nearest-neighbor bond list has a deterministic order. Under open boundary conditions it is
+$(0,1),(1,2),\ldots,(L-2,L-1)$. Under periodic boundary conditions the boundary bond $(L-1,0)$ is
+appended at the end. This order must be identical across ED matrix construction, geometry diagrams,
+and report tables.
 
 ## 3. Boundary Conditions
 
-Boundary condition은 `bc`라는 field로 표시한다.
+The boundary condition is carried by a field named `bc`.
 
 | `bc` value | Meaning | Bond content |
 |---|---|---|
 | `open` | open boundary condition | nearest-neighbor bonds only |
 | `periodic` | periodic boundary condition | nearest-neighbor bonds plus $(L-1,0)$ |
 
-문서에서는 OBC와 PBC 약어를 사용할 수 있다. 코드와 serialized run metadata에서는 `open`과
-`periodic`을 우선 사용한다.
+The abbreviations OBC and PBC may be used in prose. In code and serialized run metadata, prefer
+`open` and `periodic`.
 
-PBC는 ED와 graph-based NQS에서는 자연스럽게 boundary edge를 추가하는 방식으로 구현된다.
-TN/DMRG에서는 PBC가 알고리즘적으로 더 무거운 선택이므로, OBC와 PBC 결과를 같은 tolerance
-기대값으로 취급하지 않는다. 이 차이는 오류가 아니라 solver seam evidence의 일부로 기록한다.
+PBC is realized naturally in ED and graph-based NQS by adding the boundary edge. In TN/DMRG, PBC is an
+algorithmically heavier choice, so OBC and PBC results are not held to the same tolerance expectation.
+This difference is recorded as part of the solver-seam evidence, not as an error.
 
 ## 4. Operator Normalization
 
-Pauli operator는 $\sigma^a$, spin operator는 $S^a=\sigma^a/2$로 쓴다. 여기서
-$a\in\{x,y,z\}$이다.
+Pauli operators are written $\sigma^a$ and spin operators $S^a=\sigma^a/2$, with
+$a\in\{x,y,z\}$.
 
-기본 operator normalization은 spin operator $S^a$이다. 따라서 XXZ term과 Zeeman term은 별도
-표기가 없는 한 $S^a$로 쓴다.
+The default operator normalization is the spin operator $S^a$. Unless stated otherwise, the XXZ term
+and the Zeeman term are therefore written with $S^a$.
 
-Cluster term은 아직 normalization을 확정하지 않는다. Pauli cluster convention은
-$O^a=\sigma^a$를 사용하고, spin cluster convention은 $O^a=S^a$를 사용한다. 두 coupling의 변환은
-`parameters-and-symbols.md`에서 관리한다.
+The cluster term does not yet fix a normalization. The Pauli cluster convention uses $O^a=\sigma^a$
+and the spin cluster convention uses $O^a=S^a$. The conversion between the two couplings is managed in
+`parameters-and-symbols.md`.
 
 ## 5. Hamiltonian Sign Convention
 
-XXZ interaction은 다음 sign convention을 따른다.
+The XXZ interaction follows the sign convention
 
 $$
 H_{\mathrm{XXZ}}
@@ -65,48 +67,51 @@ J_{xy}(S_i^xS_j^x+S_i^yS_j^y)+J_zS_i^zS_j^z
 \right].
 $$
 
-이 convention에서 $J_{xy}>0$, $J_z>0$은 antiferromagnetic coupling이다.
+In this convention, $J_{xy}>0$ and $J_z>0$ are antiferromagnetic couplings.
 
-Zeeman term은 $H_{\mathrm{Zeeman}}=-h_z\sum_iS_i^z-h_x\sum_iS_i^x$로 쓴다. 따라서 positive
-$h_z$는 $+z$ 방향의 spin polarization을 에너지적으로 선호한다.
+The Zeeman term is written $H_{\mathrm{Zeeman}}=-h_z\sum_iS_i^z-h_x\sum_iS_i^x$. A positive $h_z$
+therefore energetically favors spin polarization along $+z$.
 
-Cluster term은 $H_{\mathrm{cluster}}=-K\sum_i O_{i-1}^{x}O_i^{z}O_{i+1}^{x}$의 minus-sign
-convention을 따른다. 단, $O^a$의 normalization은 cluster slice에서 확정한다.
+The cluster term follows the minus-sign convention
+$H_{\mathrm{cluster}}=-K\sum_i O_{i-1}^{x}O_i^{z}O_{i+1}^{x}$. The normalization of $O^a$ is fixed in
+the cluster slice.
 
 ## 6. Symmetry And Conservation Labels
 
-Total $S^z$는 $S_{\mathrm{tot}}^z=\sum_iS_i^z$로 둔다. XXZ Hamiltonian with $h_x=0$은 total
-$S^z$를 보존한다. Transverse field $h_x$가 켜지면 이 conservation은 일반적으로 깨진다.
+The total $S^z$ is $S_{\mathrm{tot}}^z=\sum_iS_i^z$. The XXZ Hamiltonian with $h_x=0$ conserves total
+$S^z$. Once the transverse field $h_x$ is turned on, this conservation is generally broken.
 
-Solver metadata는 conservation assumption을 명시적으로 기록해야 한다. 예를 들어 DMRG run은
-`conserve_sz=true` 또는 이에 대응하는 backend setting을 남기고, NQS run은 full Hilbert space와
-fixed-$S^z$ sector 중 어느 쪽을 사용했는지 기록한다.
+Solver metadata must record the conservation assumption explicitly. For example, a DMRG run records
+`conserve_sz=true` or the corresponding backend setting, and an NQS run records whether it used the
+full Hilbert space or a fixed-$S^z$ sector.
 
 ## 7. Numerical Comparison Convention
 
-Ground-state energy는 $E_0$, site-normalized energy는 $e_0=E_0/L$로 쓴다. 두 값이 동시에
-존재할 때 report table에는 둘을 모두 기록한다.
+The ground-state energy is written $E_0$ and the site-normalized energy $e_0=E_0/L$. When both values
+exist, the report table records both.
 
-Error는 기본적으로 absolute error $|E_{\mathrm{solver}}-E_{\mathrm{reference}}|$와 per-site
-error $|e_{\mathrm{solver}}-e_{\mathrm{reference}}|$를 함께 기록한다. Stochastic solver의 경우
-energy variance, run seed, sample count 또는 iteration count를 추가 metadata로 남긴다.
+By default, the error is recorded as the absolute error
+$|E_{\mathrm{solver}}-E_{\mathrm{reference}}|$ together with the per-site error
+$|e_{\mathrm{solver}}-e_{\mathrm{reference}}|$. For a stochastic solver, the energy variance, run seed,
+and sample or iteration count are recorded as additional metadata.
 
-Thermodynamic-limit anchor와 finite-$L$ exact reference는 같은 종류의 reference로 취급하지
-않는다. Heisenberg value $1/4-\log 2$는 finite-$L$ ED pass/fail 기준이 아니라 scale 및
-finite-size drift를 해석하기 위한 anchor다.
+A thermodynamic-limit anchor and a finite-$L$ exact reference are not treated as the same kind of
+reference. The Heisenberg value $1/4-\log 2$ is not a finite-$L$ ED pass/fail threshold but an anchor
+for interpreting scale and finite-size drift.
 
 ## 8. Document-To-Code Traceability
 
-문서와 구현은 다음 대응 관계를 유지한다.
+The documents and the implementation maintain the following correspondence.
 
 | Theory artifact | Code/report artifact |
 |---|---|
-| parameter and symbol table | `hamiltonian_specs.py`, serialized run metadata |
-| site and boundary convention | `geometry.py`, geometry report panel |
-| Hamiltonian term definitions | `hamiltonian_specs.py`, solver model builders |
-| exact reference formulae | `exact_solutions.py`, validation tests |
-| comparison tolerance | `validation.py`, report pass/fail table |
-| solver-specific required inputs | `solver_seams.py`, `reports/findings.md` |
+| parameter and symbol table | `spin_models.py` metadata now; later serialized run metadata |
+| site and boundary convention | `spin_system.py`, `spin_models.py`, `run_method_probe.py` output |
+| Hamiltonian term definitions | `spin_system.py`, `spin_models.py`, `method_form.py` term records |
+| method-specific required inputs | `method_form.py`, `tests/test_method_forms.py` |
+| exact reference formulae | deferred `exact_solutions.py`, validation tests |
+| comparison tolerance | deferred `validation.py`, report pass/fail table |
+| solver-result and findings schema | deferred `reports/findings.md` and benchmark/report artifacts |
 
-새로운 solver나 term을 추가할 때는 코드만 변경하지 않는다. 먼저 관련 theory 문서의 convention을
-갱신하고, 그 갱신이 report metadata에 반영되는지 확인한다.
+When a new solver or term is added, the code is not changed alone. First update the convention in the
+relevant theory document, then confirm that the update is reflected in the report metadata.

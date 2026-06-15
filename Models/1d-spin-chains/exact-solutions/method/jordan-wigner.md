@@ -29,12 +29,26 @@ $$
 ### Parity String
 
 Let $n_j=c_j^\dagger c_j$ be the fermion number operator. For an ordered spin-$1/2$ chain, define
-the parity string
+the parity string by
 
 $$
-P_j=\exp\left(i\pi\sum_{\ell<j}n_\ell\right)
-=\prod_{\ell<j}(1-2n_\ell).
+P_j:=\prod_{\ell<j}p_\ell=\prod_{\ell<j}(1-2n_\ell).
 $$
+
+Here the local parity operator is
+
+$$
+p_\ell:=1-2n_\ell=e^{i\pi n_\ell}.
+$$
+
+Equivalently, the same string can be written as
+
+$$
+P_j=\exp\left(i\pi\sum_{\ell<j}n_\ell\right).
+$$
+
+Thus the Jordan-Wigner string can be written either as a product of local parity operators or as an
+exponential of the fermion number to the left.
 
 The parity string is Hermitian and unitary:
 
