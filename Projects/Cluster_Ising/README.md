@@ -3,6 +3,11 @@
 This project reproduces the main numerical claims of
 `Phys. Rev. A 84, 022304 (2011)`, "Statistical mechanics of the cluster Ising model".
 
+A structured digest of that source paper (model definition, exact-solution roadmap, order
+parameters, entanglement, and central charge, with equation/section pointers) lives in the
+model-theory notes at
+[`Models/1d-spin-chains/exact-solutions/cluster-ising-chain.md`](../../Models/1d-spin-chains/exact-solutions/cluster-ising-chain.md).
+
 ## Quick start
 
 From [Projects/Cluster_Ising](/Users/david/GitHub/Tensor-Network-Study/Projects/Cluster_Ising), run:

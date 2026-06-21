@@ -14,6 +14,7 @@ This folder keeps exact-reference notes for reusable 1D spin-chain model theory.
 | `xx-chain.md` | XX point finite-chain reference |
 | `xxz-chain.md` | XXZ chain Bethe ansatz reference |
 | `tfim-chain.md` | Transverse-field Ising limit reference |
+| `cluster-ising-chain.md` | Cluster-Ising (CIM) source digest (arXiv:1105.0853); three-spin chain, anchor for `Projects/Cluster_Ising/` |
 
 ## Boundary
 
