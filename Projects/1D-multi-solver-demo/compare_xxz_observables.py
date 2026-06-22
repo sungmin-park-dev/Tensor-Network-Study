@@ -80,6 +80,9 @@ def ed_sector_energy(length, delta, n_up, jxy=1.0):
     return _ed_sector(length, delta, n_up, jxy)[0]
 
 
+# TODO: this returns the unconnected correlator <Sz_i Sz_j>. scope-and-design.md 9.2 names the
+# connected correlator <Sz_i Sz_j> - <Sz_i><Sz_j> as the primary convention; add that as a
+# follow-up once a benchmark/report slice needs it.
 def ed_nn_correlators(length, delta, jxy=1.0):
     _, v, states, index = _ed_sector(length, delta, length // 2, jxy)
     szsz = sxsx = 0.0
@@ -110,6 +113,7 @@ def _dmrg(length, delta, n_up, jxy=1.0, chi=96, corr=False):
     energy = float(info["E"])
     if not corr:
         return energy
+    # TODO: unconnected correlator, see the note on ed_nn_correlators above.
     szsz = float(psi.correlation_function("Sz", "Sz", [0], [1])[0, 0])
     spsm = psi.correlation_function("Sp", "Sm", [0], [1])[0, 0]
     smsp = psi.correlation_function("Sm", "Sp", [0], [1])[0, 0]
