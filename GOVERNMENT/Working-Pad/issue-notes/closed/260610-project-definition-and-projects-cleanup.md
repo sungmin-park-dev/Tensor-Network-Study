@@ -34,5 +34,5 @@ Root `README.md` stays a thin note. Detailed project definition lives under `GOV
 ## Verification
 
 - Confirmed tracked project corpus is `Projects/1D-multi-solver-demo/` and `Projects/Cluster_Ising/`.
-- Confirmed `Projects/XXZ_Multisolver/` is already marked discarded in `Projects/1D-multi-solver-demo/PLAN.md`.
+- Confirmed `Projects/XXZ_Multisolver/` is already marked discarded in `Projects/1D-multi-solver-demo/_meta/PLAN.md`.
 - Confirmed no tracked files under `Projects/`, `Tutorials/`, or `src/` were moved.

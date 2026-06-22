@@ -168,7 +168,7 @@ Absent before bootstrap:
 
 | Path | Current role | Migration note |
 |---|---|---|
-| `Projects/1D-multi-solver-demo/PLAN.md` | Approved 1D multi-solver demo plan and implementation sequence | Treat as project corpus. Do not move into GOVERNMENT. |
+| `Projects/1D-multi-solver-demo/_meta/PLAN.md` | Approved 1D multi-solver demo plan and implementation sequence | Treat as project corpus. Do not move into GOVERNMENT. |
 | `Projects/1D-multi-solver-demo/theory/` | Theory specification and exact-solution notes | Treat as study/research project content. Add map coverage later only if useful. |
 | `Projects/1D-multi-solver-demo/theory/progress/open/first-slice.md` | Project-local implementation-slice note | Keep project-local by default. Do not auto-register in repo-wide Working-Pad. |
 | `Projects/Cluster_Ising/` | Runnable paper reproduction project with package, tests, scripts, notebooks | Treat as research/runtime project corpus. Any path move requires import/test verification. |
@@ -206,7 +206,7 @@ Explicit non-choice: do not create AAD-style `product-space/` or `code-space/` i
 | `Tutorials/Notebooks/` | Study/learning notebooks | Keep `Tutorials/` or later `study-space/` | Keep for now | Yes for rename | Notebook references and outputs need checks before any move. |
 | `Tutorials/Notebooks/src/ncon.py` | Notebook helper code | Keep under tutorial corpus | Keep | Maybe | If promoted to library later, handle as separate code migration. |
 | `Projects/` | Important project corpus | Keep `Projects/` or later `research-space/` | Keep for now | Yes for rename | T0 corpus boundary: do not conflate with GOVERNMENT. |
-| `Projects/1D-multi-solver-demo/PLAN.md` | Approved project plan | Keep project-local | Keep | No | It is not a repo-wide issue note. |
+| `Projects/1D-multi-solver-demo/_meta/PLAN.md` | Approved project plan | Keep project-local | Keep | No | It is not a repo-wide issue note. |
 | `Projects/1D-multi-solver-demo/theory/*.md` | Theory docs and model notes | Keep project-local | Keep | No | Can receive project-local map coverage later. |
 | `Projects/1D-multi-solver-demo/theory/progress/open/first-slice.md` | Project-local progress lifecycle | Keep project-local | Keep | Yes to absorb | Default is not to move into Working-Pad. |
 | `Projects/1D-multi-solver-demo/theory/writing-guidelines.md` | Project-local writing policy | Keep project-local; possible future `Agents-Bylaws/policies/tns-writing-style.md` | Keep for now | Yes for promotion | It references LSWT policy; do not generalize automatically. |
