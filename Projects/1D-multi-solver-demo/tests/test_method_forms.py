@@ -2,7 +2,7 @@
 
 import numpy as np
 
-from one_dimensional_multi_solver_demo import ED, NQS, TN, QuadHam, build_xxz_chain, change_form
+from one_dimensional_multi_solver_demo import ED, NQS, TN, QuadHam, build_spin_chain, build_xxz_chain, change_form
 
 
 def test_spin_system_keeps_geometry_and_terms_method_independent():
@@ -33,6 +33,21 @@ def test_ed_form_consumes_many_body_basis_and_local_matrices():
     assert form.payload["local_operator_matrices"]["Sx"].shape == (2, 2)
     assert len(form.payload["matrix_terms"]) == 6
     assert "local_space.operators" in form.consumed
+
+
+def test_ed_form_accepts_cluster_three_body_terms():
+    system = build_spin_chain(length=5, bc="open", jxy=0.0, jz=0.0, k=1.0)
+    form = change_form(system, ED)
+
+    cluster_terms = [term for term in form.payload["matrix_terms"] if term["label"] == "cluster"]
+
+    assert form.status == "ready"
+    assert len(cluster_terms) == 3
+    assert cluster_terms[0]["operators"] == (
+        {"name": "Sx", "site": 0},
+        {"name": "Sz", "site": 1},
+        {"name": "Sx", "site": 2},
+    )
 
 
 def test_tn_form_keeps_named_operator_terms_and_bonds():
@@ -104,4 +119,3 @@ def test_quad_ham_rejects_interacting_xxz_as_non_quadratic():
     assert form.status == "not_applicable"
     assert "jz_interaction" in form.payload["unsupported_features"]
     assert "noninteracting_or_jw_quadratic_mapping" in form.required_extra
-

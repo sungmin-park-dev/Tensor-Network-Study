@@ -4,8 +4,9 @@
 
 코드는 현재 두 개의 분리된 surface로 존재한다.
 
-1. **Method-consumption probe package** (`one_dimensional_multi_solver_demo/`) — `SpinSystem`을
-   ED/TN/NQS/QuadHam `MethodForm`으로 변환만 한다. 솔버를 실행하지 않는다.
+1. **Project-local package** (`one_dimensional_multi_solver_demo/`) — `SpinSystem`을
+   ED/TN/NQS/QuadHam `MethodForm`으로 변환하고, 현재 ED에 한해 실제 ground-state solve와 관측량
+   계산을 수행한다.
 2. **Standalone XXZ verification/comparison scripts** (project root: `verify_xxz_bethe.py`,
    `compare_xxz_solvers.py`, `compare_xxz_observables.py`, `compare_xxz_entanglement_decay.py`) —
    ED/Bethe/DMRG를 직접 호출해 에너지, spin gap, magnetization, nearest-neighbor correlator,
@@ -74,9 +75,15 @@ Projects/1D-multi-solver-demo/
 
 ### 2. 우선 모델과 현재 구현 범위
 
-현재 구현·검증은 `H_XXZ + H_Zeeman` 부분집합에 한정한다 (`K=0`, [scope-and-design.md](scope-and-design.md)
-5.1/5.2). `H_cluster` 항은 아직 placeholder이며 어떤 빌더에도 들어 있지 않다. 이론 문서·검증
-스크립트도 모두 이 subset (XX/TFIM/XXZ)을 우선 다룬다.
+현재 project-local package는 `H_XXZ + H_cluster + H_Zeeman` family builder를 가진다. 기존
+`build_xxz_chain(...)`은 `K=0` wrapper로 유지하고, 새 `build_spin_chain(...)`이 cluster term까지
+생성한다. Cluster OBC는 bulk-only (`i=1..L-2`)이고 PBC는 modulo index다.
+
+ED slice는 `change_form(system, ED)` 결과의 `matrix_terms`와 local matrices를 소비해 sparse
+Hamiltonian을 조립한 뒤 ground state를 계산한다. 현재 관측량은 energy, energy per site,
+site-resolved `<Sz>`, connected `<Sz_i Sz_j>`, spin-vector expectation, half-chain entropy다.
+exact overlay는 finite PBC XXZ Bethe reference(`K=hx=hz=0`, even `L`, `0 <= Delta <= 1`)와 pure
+cluster stabilizer limit을 우선 지원한다. TN/NQS/QuadHam은 아직 backend solve 없이
+`MethodForm` probe 상태다.
 
 결정이 내려진 시점과 경위는 [decision-log.md](decision-log.md)를 본다.
-

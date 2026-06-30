@@ -16,6 +16,7 @@ This file is the repo-wide active work index. Project-local progress remains in 
 
 | Priority | Type | Task | Status | File |
 |---|---|---|---|---|
+| P0 | implementation | 1D Solver UI/App ED slice | draft | `issue-notes/open/260621-1d-solver-ui-plan.md` |
 | P1 | discussion | System definition design for method-consumption probe | draft | `issue-notes/open/260613-system-definition-design.md` |
 | P2 | review | Physics review of exact-solution theory notes (tfim, BdG) | draft | `issue-notes/open/260614-exact-solution-physics-review.md` |
 

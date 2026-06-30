@@ -18,3 +18,7 @@
 
 9. Cluster term의 local operator convention을 spin operator `S = sigma/2`로 확정했다 (8번 항목의 후속 결정). 기존 `H_XXZ`, `H_Zeeman`과 같은 convention으로 통일하는 것이 더 일반적인 선택이라는 판단이다. `K_Pauli = K_spin / 8`로 환산한다. 자세한 내용은 [scope-and-design.md](scope-and-design.md) 5.1을 본다.
 10. 1D PBC/OBC 전략을 "OBC가 기본, PBC는 탐색적"에서 "구현 난이도가 낮으면 OBC/PBC를 모두 구현해 정확도·속도를 직접 비교하고, 구현이 어려운 method에서만 더 쉬운 쪽을 고른다"로 수정했다. 궁극적인 목표가 솔버 결과 간 비교라는 판단에 따른 것이다. 자세한 내용은 [scope-and-design.md](scope-and-design.md) 6을 본다.
+
+2026-06-21:
+
+11. Cluster OBC 규칙은 bulk-only로 확정했다. 즉 `-K Sx_{i-1} Sz_i Sx_{i+1}`는 open chain에서 중심 `i=1..L-2`만 합산하고, PBC에서는 index를 modulo `L`로 읽는다. 이 결정은 Streamlit ED UI/App slice의 코드 전 이론 확정 항목이다.

@@ -5,7 +5,7 @@ section: working-pad/issue-notes
 status: in-review
 last-edited-by: codex
 created: 2026-06-10
-updated: 2026-06-14
+updated: 2026-06-23
 ---
 
 # Map - issue-notes
@@ -17,6 +17,7 @@ updated: 2026-06-14
 
 | Path | Type | Status | Role |
 |---|---|---|---|
+| `open/260621-1d-solver-ui-plan.md` | discussion | draft | P0 implementation handoff spec for the 1D solver UI/App ED slice |
 | `open/260613-system-definition-design.md` | discussion | draft | Active `SpinSystem` and method-form design discussion |
 | `open/260614-exact-solution-physics-review.md` | review | draft | Physics correctness and convention review of exact-solution theory notes |
 

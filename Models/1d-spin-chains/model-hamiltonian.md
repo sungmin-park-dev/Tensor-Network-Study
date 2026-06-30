@@ -78,8 +78,9 @@ H_{\mathrm{cluster}}(K)
 $$
 
 This cluster term is interpreted as a 1D chain term. Under periodic boundary conditions, the site
-indices are read modulo $L$. How the cluster term is truncated under open boundary conditions is fixed
-separately in the cluster-term slice.
+indices are read modulo $L$. Under open boundary conditions, only bulk-centered terms are kept:
+$i=1,\ldots,L-2$. The two terms that would require sites outside the chain are dropped. This is the
+project convention for the first cluster-capable ED slice.
 
 ## 3. Exact Solution
 

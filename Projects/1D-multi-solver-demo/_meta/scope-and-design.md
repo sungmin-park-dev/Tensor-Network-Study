@@ -136,9 +136,11 @@ Local operator convention은 spin operator `S = sigma/2`(고유값 `±1/2`)다. 
 - longitudinal field: `Jxy=1`, `Jz=1`, `hz=0.5`, `hx=0`.
 - transverse field seam: `Jxy=1`, `Jz=1`, `hz=0`, `hx>0`.
 
-#### 5.3 후속 slice: Cluster term
+#### 5.3 Cluster term
 
-Cluster term은 첫 slice 이후 추가한다.
+Cluster term은 Streamlit ED UI/App slice에서 project-local builder에 추가한다. Open boundary
+condition에서는 중심 `i=1..L-2`인 bulk-only 항만 포함하고, periodic boundary condition에서는
+site index를 modulo `L`로 읽는다.
 
 역할:
 
@@ -146,7 +148,8 @@ Cluster term은 첫 slice 이후 추가한다.
 - pure cluster limit과 Cluster-Ising critical point에서 known exact formula 또는 기존 구현 결과와 비교.
 - 3-body term이 ED, TeNPy, NetKet에서 어떤 입력 형태를 요구하는지 seam evidence로 기록.
 
-열려 있는 질문은 [next-actions.md](next-actions.md) 3을 본다.
+이 slice는 ED 실행과 UI 확인을 위한 cluster-capable builder까지 다루며, TN/NQS backend와
+`code-space/` 승격은 여전히 후속 범위다.
 
 ### 6. 1D PBC/OBC 전략
 

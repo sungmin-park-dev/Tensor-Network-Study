@@ -1,4 +1,4 @@
-"""Small model builders used by the method-consumption probe."""
+"""Small model builders used by the method-consumption probe and ED app."""
 
 from __future__ import annotations
 
@@ -37,19 +37,45 @@ def _chain_bonds(length: int, bc: str) -> tuple[Bond, ...]:
     return tuple(bonds)
 
 
-def build_xxz_chain(
+def _cluster_supports(length: int, bc: str) -> tuple[tuple[int, int, int], ...]:
+    if bc == "periodic":
+        return tuple(((center - 1) % length, center, (center + 1) % length) for center in range(length))
+    return tuple((center - 1, center, center + 1) for center in range(1, length - 1))
+
+
+def _model_family(*, jxy: float, jz: float, k: float, hz: float, hx: float) -> str:
+    tol = 1e-15
+    has_xxz_or_field = any(abs(value) > tol for value in (jxy, jz, hz, hx))
+    has_cluster = abs(k) > tol
+    if has_cluster and not has_xxz_or_field:
+        return "cluster_ising"
+    if not has_cluster:
+        return "xxz"
+    return "general"
+
+
+def build_spin_chain(
     *,
     length: int,
     bc: str = "open",
     jxy: float = 1.0,
     jz: float = 0.0,
+    k: float = 0.0,
     hz: float = 0.0,
     hx: float = 0.0,
 ) -> SpinSystem:
-    """Build the first-slice XXZ plus Zeeman spin system."""
+    """Build the XXZ + cluster + Zeeman 1D spin-chain family.
+
+    The cluster term follows the project convention
+    ``-K Sx_{i-1} Sz_i Sx_{i+1}``. Under open boundary conditions only bulk
+    centers ``i=1..L-2`` are included; under periodic boundary conditions site
+    indices are read modulo ``L``.
+    """
 
     length = _validate_length(length)
     bc = _validate_bc(bc)
+    if k and length < 3:
+        raise ValueError("cluster coupling requires length at least 3.")
     sites = _chain_sites(length)
     bonds = _chain_bonds(length, bc)
     terms: list[HamiltonianTerm] = []
@@ -80,6 +106,20 @@ def build_xxz_chain(
                 )
             )
 
+    if k:
+        for left, center, right in _cluster_supports(length, bc):
+            terms.append(
+                HamiltonianTerm(
+                    label="cluster",
+                    coefficient=complex(-k),
+                    operators=(
+                        OperatorOnSite("Sx", left),
+                        OperatorOnSite("Sz", center),
+                        OperatorOnSite("Sx", right),
+                    ),
+                )
+            )
+
     for site in sites:
         if hz:
             terms.append(
@@ -98,21 +138,46 @@ def build_xxz_chain(
                 )
             )
 
+    family = _model_family(jxy=jxy, jz=jz, k=k, hz=hz, hx=hx)
     return SpinSystem(
-        name="xxz_chain",
+        name=f"{family}_chain",
         local_space=spin_half_space(),
         sites=sites,
         bonds=bonds,
         terms=tuple(terms),
         bc=bc,
         metadata={
-            "model_family": "xxz",
+            "model_family": family,
             "length": length,
             "jxy": float(jxy),
             "jz": float(jz),
             "hz": float(hz),
             "hx": float(hx),
-            "cluster_coupling": 0.0,
+            "cluster_coupling": float(k),
+            "k": float(k),
+            "cluster_obc_rule": "bulk_only" if bc == "open" else "modulo_periodic",
         },
     )
 
+
+def build_xxz_chain(
+    *,
+    length: int,
+    bc: str = "open",
+    jxy: float = 1.0,
+    jz: float = 0.0,
+    hz: float = 0.0,
+    hx: float = 0.0,
+) -> SpinSystem:
+    """Build the first-slice XXZ plus Zeeman spin system."""
+
+    system = build_spin_chain(length=length, bc=bc, jxy=jxy, jz=jz, k=0.0, hz=hz, hx=hx)
+    return SpinSystem(
+        name="xxz_chain",
+        local_space=system.local_space,
+        sites=system.sites,
+        bonds=system.bonds,
+        terms=system.terms,
+        bc=system.bc,
+        metadata=system.metadata,
+    )
