@@ -192,6 +192,47 @@ SpinSystem -> MethodForm(ED) -> SolverInput -> SolverResult -> ObservableResult 
 - `Cluster_Ising` solver/result and exact-solution patterns, copied project-locally where needed rather than imported as an external project dependency.
 - `Models/1d-spin-chains/exact-solutions/` for reference formulas.
 
+## Repo Readiness Review Input
+
+이 섹션은 사용자가 이 draft spec을 리뷰하기 전에 확인할 repo-side 입력 자료다. 구현 지시가 아니라, 현재 repo 상태와 이 plan 사이의 정합성 검토 포인트를 기록한다.
+
+### Existing Prototype Surface
+
+- 이 plan은 앞으로 구현할 계획처럼 쓰여 있지만, repo에는 이미 P0 slice와 겹치는 prototype/prior-attempt 구현이 있다.
+- 이 기존 구현은 승인된 starting baseline이 아니다. 구현 단계에서는 각 부분을 `reuse`, `revise`, `discard`로 판정한 뒤 편입한다.
+- 이 plan의 acceptance 기준은 기존 구현 상태가 아니라 `SPEC A-D`와 사용자의 review decision이다.
+- `Projects/1D-multi-solver-demo/app/`에는 `Home`, `Define`, `MethodForm`, `Solve`, `Observables` Streamlit pages가 이미 있다.
+- `Projects/1D-multi-solver-demo/one_dimensional_multi_solver_demo/`에는 `build_spin_chain(...)`, `change_form(system, ED)`, project-local ED solver, observables, exact-reference overlay가 이미 있다.
+- `Models/1d-spin-chains/model-hamiltonian.md`는 cluster OBC rule을 이미 문서화한다: open boundary는 bulk-centered terms `i=1..L-2`, periodic boundary는 modulo index.
+- Root `requirements.txt`에는 `streamlit>=1.58`가 이미 있다.
+- Current prototype test status: `python -m pytest Projects/1D-multi-solver-demo/tests/` passes with 14 tests.
+- Current dirty worktree observed during readiness review is limited to map/template navigation files, not P0 app/backend/test files.
+
+### Review Questions Before Execution
+
+1. 기존 app/backend 구현 중 어떤 부분을 새 plan의 구현 기반으로 재사용할 것인가? 각 주요 surface를 `reuse`, `revise`, `discard`로 판정한다.
+2. `Define` page의 Hamiltonian term selector를 view/highlight selector로 확정할 것인가? 현재 UI copy에는 "choose active terms", "active term family"처럼 active toggle로 오해될 수 있는 표현이 남아 있다.
+3. `Home` page는 현재처럼 Project/Scope/Current Implementation/Planned Implementation 설명을 유지할 것인가, 아니면 "clean and minimal" 기준에 맞춰 더 줄일 것인가?
+4. Exact overlay acceptance는 현재 구현된 finite PBC XXZ Bethe reference와 pure cluster stabilizer limit까지만 둘 것인가, 아니면 이 draft에 언급된 TFIM limit까지 이번 ED UI slice에 포함할 것인가?
+5. `Projects/1D-multi-solver-demo/_meta/current-status.md`와 `next-actions.md`는 현재 구현 상태보다 뒤처진 부분이 있다. P0 구현 전에 먼저 갱신할 것인가, 아니면 implementation close 단계에서 갱신할 것인가?
+
+### Known Alignment Notes
+
+- `Define` page already uses the two main body sections `Geometry` and `Hamiltonian`.
+- Boundary condition is already user-editable on the Define page.
+- `build_spin_chain(...)` already supports `Jxy`, `Jz`, `K`, `hz`, `hx`, `open`, and `periodic`.
+- `change_form(system, ED)` already serializes arbitrary matrix terms, including three-body cluster terms.
+- `solve_ed(...)` consumes the ED `MethodForm` payload and returns energy, energy per site, state, wall time, Hilbert dimension, boundary condition, and term count.
+- Observable helpers already cover site-resolved `Sz`, connected `Sz-Sz`, spin-vector expectation, and half-chain entropy.
+
+### Known Drift Or Risk
+
+- The current `Define` page copy may conflict with the intended selector semantics. The selector should highlight/view term families; coefficient values determine active matrix terms.
+- `Home.py` may contain more explanatory content than the intended minimal Home page.
+- `exact_references.py` currently covers finite PBC XXZ Bethe and pure cluster stabilizer overlays; TFIM is not currently implemented as an app overlay.
+- `_meta/current-status.md` includes an outdated directory structure block that omits current app pages, ED solver, observables, exact references, and additional tests.
+- `_meta/next-actions.md` still describes earlier first-slice work and should not be treated as the latest execution checklist without reconciliation.
+
 ## Approval Needed
 
 - User review of `SPEC B - Define Page Contract`, especially whether **Geometry** and **Hamiltonian** are the only top-level sections needed for the Define page.
